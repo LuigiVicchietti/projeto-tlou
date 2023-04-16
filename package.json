@@ -1,0 +1,10 @@
+{
+  "name": "projeto-tlou",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./projeto-tlou/app.js",
+    "dev": "cd projeto-tlou && npm run dev",
+    "postinstall": "cd projeto-tlou && npm install"
+  }
+}

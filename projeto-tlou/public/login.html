@@ -9,7 +9,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/login.css">
-    <title>Login</title>
+    <title>Login - Projeto</title>
 </head>
 
 <body>
@@ -17,8 +17,10 @@
         <div id="left-page"></div>
         <section>
             <div class="container">
-                <a href="./index.html"><img class="arrow-back select-disable" src="./assets/img/icons/arrow-back.png" alt="Voltar"></a>
-                <div class="interaction select-disable"><button><img src="./assets/img/icons/light.png" alt="Light"><span>Dark mode</span></button></div>
+                <a href="./index.html"><img class="arrow-back select-disable" src="./assets/img/icons/arrow-back.png"
+                        alt="Voltar"></a>
+                <div class="interaction select-disable"><button><img src="./assets/img/icons/light.png"
+                            alt="Light"><span>Dark mode</span></button></div>
                 <div class="form-container">
                     <div class="welcome-text">
                         <h1 class="select-disable">Login</h1>
@@ -31,13 +33,15 @@
                             <div><input type="checkbox" name="Remember 30days" id="remember">Lembrar por 30 dias</div>
                             <a href="#">Esqueceu a senha?</a>
                         </div>
-                        <button class="select-disable"><a href="#">Entrar</a></button>
+                        <button class="select-disable" onclick="entrar()"><a href="#">Entrar</a></button>
                         <button class="select-disable"><a href="./cadastro.html">Registrar</a></button>
                         <hr>
-                        <button class="select-disable"><a href="#"><img src="./assets/img/icons/icon-google.png" alt="Google"> Entre com o Google</a></button>
+                        <button class="select-disable"><a href="#"><img src="./assets/img/icons/icon-google.png"
+                                    alt="Google"> Entre com o Google</a></button>
                     </div>
                 </div>
-                <text>Ainda não tem uma conta? <a href="./cadastro.html" class="link">Clique aqui e registre-se!</a></text>
+                <text>Ainda não tem uma conta? <a href="./cadastro.html" class="link">Clique aqui e
+                        registre-se!</a></text>
             </div>
         </section>
     </main>
@@ -48,4 +52,67 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
+</script>
+
+<script src="./js/funcoes.js"></script>
+<script>
+    function entrar() {
+        var emailVar = input_email.value;
+        var senhaVar = input_password.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert("Mensagem de erro para todos os campos em branco");
+            return false;
+        }
+        else {
+            
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/dashboard.html";
+                    }, 1000);
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
 </script>

@@ -1,0 +1,13 @@
+CREATE DATABASE projetoTlou;
+USE projetoTlou;
+-- DROP DATABASE projetoTlou;
+
+CREATE TABLE user (
+iduser INT PRIMARY KEY AUTO_INCREMENT
+, username VARCHAR(45) NOT NULL
+, email VARCHAR(100) NOT NULL
+, password VARCHAR(45) NOT NULL
+);
+
+SELECT * FROM user;
+TRUNCATE TABLE user;
