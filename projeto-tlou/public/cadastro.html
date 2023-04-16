@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/icon-page.webp" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
+    <title>Registrar</title>
+</head>
+
+<body>
+    <main>
+        <div id="left-page"></div>
+        <section>
+            <div class="container">
+                <a href="./index.html"><img class="arrow-back select-disable" src="./assets/img/icons/arrow-back.png" alt="Voltar"></a>
+                <div class="interaction select-disable"><button><img src="./assets/img/icons/light.png" alt="Light"><span>Dark mode</span></button></div>
+                <div class="form-container">
+                    <div class="welcome-text">
+                        <h1 class="select-disable">Registre-se</h1>
+                        <p>Crie seu usuário! Por favor, coloque algumas informações para se registrar.</p>
+                    </div>
+                    <div class="form">
+                        <input type="text" id="input_username" placeholder="User">
+                        <input type="text" id="input_email" placeholder="E-mail">
+                        <input type="password" id="input_password" placeholder="Password">
+                        <input type="password" id="input_confirm_password" placeholder="Confirm password">
+                        <button class="select-disable"><a href="#">Registrar</a></button>
+                        <hr>
+                        <button class="select-disable"><a href="#"><img src="./assets/img/icons/icon-google.png" alt="Google"> Registre-se com o Google</a></button>
+                    </div>
+                </div>
+                <text>Você já tem uma conta? <a href="./login.html" class="link">Clique aqui e entre já!</a></text>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+<script src="./js/login.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
