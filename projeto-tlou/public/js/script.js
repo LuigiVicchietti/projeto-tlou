@@ -1,7 +1,7 @@
 const // navItens = document.querySelectorAll(".nav-item"),
-    navbar = document.getElementById("navbar"),
-    titleNavbar = document.getElementById("title-navbar"),
-    firefly = document.getElementById("firefly-navbar");
+    // titleNavbar = document.getElementById("title-navbar"),
+    // firefly = document.getElementById("firefly-navbar"),
+        navbar = document.getElementById("navbar");
 
 const ativarScroll = () => {
     navbar.classList.toggle("alt", scrollY > 0);

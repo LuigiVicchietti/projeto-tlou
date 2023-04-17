@@ -71,6 +71,12 @@ section {
     width: 50%;
     height: 100vh;
     padding: 3rem;
+    transition: 0.5s ease-in-out;
+}
+
+section a,
+section span {
+    transition: 0.5s ease-in-out;
 }
 
 .arrow-back {
@@ -81,15 +87,15 @@ section {
     right: 0;
 }
 
-.interaction button{
+.interaction button {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: transparent;
     border: none;
-    font-size: 15px;
-    gap: 1vw;
+    font-size: 16px;
+    gap: 0.8vw;
     cursor: pointer;
 }
 
@@ -132,15 +138,16 @@ section {
 .form input {
     border: none;
     border-bottom: 2px solid #E0E0E0;
-    transition: 0.5s;
     padding: 5px 0;
     margin: 1vh 0;
+    transition: 0.5s ease-in-out;
 }
 
 .form input::placeholder {
     color: #000;
     font-family: 'Modern Sans';
     font-size: 20px;
+    transition: 0.5s ease-in-out;
 }
 
 .form input:focus {
@@ -154,13 +161,14 @@ a {
     cursor: pointer;
 }
 
-.form button{
+.form button {
     font-weight: 500;
     width: 100%;
     background-color: #FFF;
     border: 1px solid #000;
     border-radius: 3px;
     margin: 5px 0;
+    padding: 1px 1px;
 }
 
 .form button a {
@@ -168,15 +176,20 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5vh;
+    padding: 1.5vh 0;
 }
 
 .form button:first-of-type {
     background-color: #000;
-    margin-top: 3vh;
+    transition: 0.5s ease-in-out;
 }
+
 .form button:first-of-type a {
     color: #FFF;
+}
+
+.form button:last-of-type {
+    transition: 0.5s ease-in-out;
 }
 
 .form button:last-of-type img {
@@ -186,13 +199,13 @@ a {
 .form button:last-of-type a {
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     gap: 2vw;
 }
 
 hr {
     width: 100%;
-    color: #E0E0E0;
+    border-color: #E0E0E0;
     margin: 3vh 0;
 }
 
@@ -201,6 +214,66 @@ hr {
     font-size: 16px;
 }
 
-.container text a{
+.container text a {
     text-decoration: underline;
+}
+
+/* Dark mode css */
+section.ativo {
+    color: #FFF;
+    background-color: #151515;
+}
+
+section.ativo a,
+section.ativo span {
+    color: #FFF;
+}
+
+.interaction.ativa {
+    color: #FFF;
+}
+
+#input_username.ativo,
+#input_email.ativo,
+#input_password.ativo,
+#input_confirm_password.ativo {
+    color: #FFF;
+    background-color: #151515;
+    border-color: #B0B0B0;
+}
+
+#input_username.ativo::placeholder,
+#input_email.ativo::placeholder,
+#input_password.ativo::placeholder,
+#input_confirm_password.ativo::placeholder {
+    color: #FFF;
+}
+
+#input_username.ativo:focus,
+#input_email.ativo:focus,
+#input_password.ativo:focus,
+#input_confirm_password.ativo:focus {
+    border-bottom: 2px solid #FFF;
+}
+
+#btn_signUp.ativo {
+    background-color: #FFF;
+    border-color: #FFF;
+}
+
+#btn_signUp.ativo a {
+    color: #000;
+}
+
+#btn_signUp_google.ativo {
+    background-color: #151515;
+    border-color: #FFF;
+}
+
+#btn_signUp_google.ativo a {
+    color: #FFF;
+}
+
+#btn_signUp_google.ativo div {
+    color: #FFF;
 }

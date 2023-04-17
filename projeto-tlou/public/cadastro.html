@@ -15,12 +15,13 @@
 <body>
     <main>
         <div id="left-page"></div>
-        <section>
+        <section id="right_page">
             <div class="container">
                 <a href="./index.html"><img class="arrow-back select-disable" src="./assets/img/icons/arrow-back.png"
-                        alt="Voltar"></a>
-                <div class="interaction select-disable"><button><img src="./assets/img/icons/light.png"
-                            alt="Light"><span>Dark mode</span></button></div>
+                        alt="Voltar" id="arrow_back"></a>
+                <div class="interaction select-disable" id="interaction"><button id="btn_mode"><img
+                            src="./assets/img/icons/light.png" alt="Light" id="light"><span id="type_mode">Dark
+                            mode</span></button></div>
                 <div class="form-container">
                     <div class="welcome-text">
                         <h1 class="select-disable">Registre-se</h1>
@@ -31,10 +32,12 @@
                         <input type="text" id="input_email" placeholder="E-mail">
                         <input type="password" id="input_password" placeholder="Password">
                         <input type="password" id="input_confirm_password" placeholder="Confirm password">
-                        <button class="select-disable" onclick="cadastrar()"><a href="#">Registrar</a></button>
+                        <button class="select-disable" onclick="cadastrar()" id="btn_signUp"><a
+                                href="#">Registrar</a></button>
                         <hr>
-                        <button class="select-disable"><a href="#"><img src="./assets/img/icons/icon-google.png"
-                                    alt="Google"> Registre-se com o Google</a></button>
+                        <button class="select-disable" id="btn_signUp_google"><a href="#"><img
+                                    src="./assets/img/icons/icon-google.png" alt="Google"> Registre-se com o
+                                Google</a></button>
                     </div>
                 </div>
                 <text>Você já tem uma conta? <a href="./login.html" class="link">Clique aqui e entre já!</a></text>
@@ -44,7 +47,7 @@
 </body>
 
 </html>
-<script src="./js/login.js"></script>
+<script src="./js/cadastro.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
