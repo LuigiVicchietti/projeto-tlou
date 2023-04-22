@@ -61,6 +61,30 @@ main {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 2rem;
+}
+
+#div_card {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 28vw;
+    border: 1px solid #FF5555;
+    border-radius: 5px;
+    background-color: #FFF;
+    padding: 1rem;
+    transition: 0.5s;
+}
+
+#div_card img {
+    max-width: 20px;
+    margin-right: 1vw;
+}
+
+#mensagem {
+    font-size: 19px;
+    font-weight: 500;
 }
 
 section {
@@ -219,6 +243,11 @@ hr {
 }
 
 /* Dark mode css */
+#div_card.ativo {
+    color: #FFF;
+    background-color: #151515;
+}
+
 section.ativo {
     color: #FFF;
     background-color: #151515;

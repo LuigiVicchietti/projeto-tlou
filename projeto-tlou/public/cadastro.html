@@ -14,7 +14,14 @@
 
 <body>
     <main>
-        <div id="left-page"></div>
+        <div id="left-page">
+            <div class="div_card" id="div_card">
+                <div class="card" id="card">
+                    <img id="img_status" src="./assets/img/icons/wrong.png" alt="Estado da ação">
+                    <span id="mensagem"></span>
+                </div>
+            </div>
+        </div>
         <section id="right_page">
             <div class="container">
                 <a href="./index.html"><img class="arrow-back select-disable" src="./assets/img/icons/arrow-back.png"
@@ -55,6 +62,8 @@
 
 <script src="./js/funcoes.js"></script>
 <script>
+const status = document.getElementById("img_status");
+
     function cadastrar() {
         var usernameVar = input_username.value;
         var emailVar = input_email.value;
@@ -62,8 +71,8 @@
         var confirmacaoSenhaVar = input_confirm_password.value;
 
         if (usernameVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            alert("Mensagem de erro para todos os campos em branco");
-
+            div_card.style.display = "block";
+            mensagem.innerHTML = "Preencha os campos corretamente!";
             return false;
         }
         else {
@@ -85,7 +94,10 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                div_card.style.display = "block";
+                div_card.style.borderColor = "#74C365";
+                status.setAttribute("src", "./assets/img/icons/ok.png");
+                mensagem.innerHTML = "Cadastro realizado com sucesso!";
 
                 setTimeout(() => {
                     window.location = "login.html";
@@ -99,4 +111,10 @@
 
         return false;
     }
+
+    function sumirCard() {
+        setTimeout(function () { div_card.style.display = "none"; }, 3500);
+    }
+
+    document.getElementById("btn_signUp").addEventListener('click', sumirCard);
 </script>

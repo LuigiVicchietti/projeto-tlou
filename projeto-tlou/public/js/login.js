@@ -1,4 +1,5 @@
 const theme = document.getElementById("btn_mode")
+    , card = document.getElementById("div_card")
     , signIn = document.getElementById("btn_signIn")
     , signUp = document.getElementById("btn_signUp")
     , signUp_google = document.getElementById("btn_signUp_google")
@@ -37,6 +38,7 @@ function changeDefault() {
 
 const changeTheme = () => {
     sessao.classList.toggle("ativo");
+    card.classList.toggle("ativo");
     input_email.classList.toggle("ativo");
     input_password.classList.toggle("ativo");
     check.classList.toggle("ativo");

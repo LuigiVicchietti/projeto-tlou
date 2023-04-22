@@ -14,7 +14,14 @@
 
 <body>
     <main>
-        <div id="left-page"></div>
+        <div id="left-page">
+            <div class="div_card" id="div_card">
+                <div class="card" id="card">
+                    <img id="img_status" src="./assets/img/icons/wrong.png" alt="Estado da ação">
+                    <span id="mensagem"></span>
+                </div>
+            </div>
+        </div>
         <section id="right_page">
             <div class="container">
                 <a href="./index.html"><img class="arrow-back select-disable" src="./assets/img/icons/arrow-back.png"
@@ -64,11 +71,9 @@
         var senhaVar = input_password.value;
 
         if (emailVar == "" || senhaVar == "") {
-            alert("Mensagem de erro para todos os campos em branco");
+            div_card.style.display = "block";
+            mensagem.innerHTML = "Preencha os campos corretamente!";
             return false;
-        }
-        else {
-
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -118,4 +123,10 @@
 
         return false;
     }
+
+    function sumirCard() {
+        setTimeout(function () {div_card.style.display = "none";}, 3500);
+    }
+
+    document.getElementById("btn_signIn").addEventListener('click', sumirCard);
 </script>

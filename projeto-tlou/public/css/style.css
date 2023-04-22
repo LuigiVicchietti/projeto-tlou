@@ -173,7 +173,7 @@ a {
 
 .text-title-header {
     font-size: 20px;
-    text-align: justify;
+    text-align: end;
     letter-spacing: 1px;
 }
 
@@ -526,6 +526,7 @@ main {
 
 .half-alternative-right {
     display: flex;
+    flex-direction: column;
     position: absolute;
     width: 50%;
     height: auto;
@@ -539,6 +540,7 @@ main {
 
 .half-alternative-left {
     display: flex;
+    flex-direction: column;
     position: absolute;
     width: 50%;
     height: auto;
@@ -554,7 +556,7 @@ main {
     display: flex;
     position: relative;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-image: url(../assets/img/image-interact-1.jpg);
     background-size: cover;
@@ -575,9 +577,9 @@ main {
 .quiz-section-div {
     display: flex;
     height: 30rem;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
     gap: 20px;
     padding: 1rem;
 }
