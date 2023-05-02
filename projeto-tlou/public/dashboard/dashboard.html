@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/icon-page.webp" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Dashboard - Projeto</title>
+</head>
+
+<body>
+    <main>
+        <nav class="nav" id="nav">
+            <button class="btn-menu" id="btn_menu"><img class="nav-img-menu select-disable"
+                    src="../assets/img/icons/List.png" alt="Menu"></button>
+            <ul class="nav-list" id="nav_list">
+                <li>
+                    <a href="./dashboard.html">
+                        <img class="li-img select-disable"
+                            src="https://static.tvtropes.org/pmwiki/pub/images/fireflies.png" alt="Icone vagalumes">
+                        <span class="select-disable">Geral</span>
+                    </a>
+                </li>
+                <li><a href="#">
+                        <img class="li-img select-disable" src="../assets/img/icons/quiz-icon.png" alt="Icone quiz">
+                        <span class="select-disable">Quiz</span>
+                    </a>
+                </li>
+                <li></li>
+            </ul>
+            <a href="../login.html">
+                <img class="img-sair select-disable" src="../assets/img/icons/exit.png" alt="Sair">
+                <span class="select-disable">Sair</span>
+            </a>
+        </nav>
+        <section class="section-content" id="section_content">
+            <div class="top-content">
+                <h2 class="select-disable">Welcome back, <span id="user">Luigi</span></h2>
+                <div>
+                    <div class="interaction select-disable" id="interaction">
+                        <button class="select-disable" id="btn_mode">
+                            <img src="../assets/img/icons/light.png" alt="Light" id="light">
+                            <span id="type_mode">Dark mode</span>
+                        </button>
+                    </div>
+                    <input class="select-disable" type="text" id="input_search" placeholder="Search">
+                </div>
+            </div>
+            <div id="content">
+                <div class="content-column" id="content_info">
+                    <ul class="info-list">
+                        <li>
+                            <img class="select-disable" src="../assets/img/icons/User.png" alt="Icone de user">
+                            <div class="li-info">Usuários cadastrados
+                                <span id="qtd_user">3</span>
+                            </div>
+                        </li>
+                        <li>
+                            <img class="select-disable" src="../assets/img/icons/icon-trofeu.png" alt="Icone de troféu">
+                            <div class="li-info">Quizes gabaritados
+                                <span id="qtd_quiz_gab">1</span>
+                            </div>
+                        </li>
+                        <li>
+                            <img class="select-disable" src="../assets/img/icons/Heart.png" alt="Icone de coração">
+                            <div class="li-info">Quiz curtido
+                                <span id="fav_char">3</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="div-table">
+                        <table>
+                            <thead>
+                                <tr class="select-disable">
+                                    <th>Pódio</th>
+                                    <th>User</th>
+                                    <th>Pontuação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1°</td>
+                                    <td>Luigi</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>2°</td>
+                                    <td>Luigi</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>3°</td>
+                                    <td>Luigi</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>4°</td>
+                                    <td>Luigi</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>5°</td>
+                                    <td>Luigi</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>6°</td>
+                                    <td>Luigi</td>
+                                    <td>12</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-column" id="content_charts">
+                    <h2>Quantidade de acertos por cada questão</h2>
+                    <div class="div-big-chart">
+                        <canvas class="select-disable" id="myChart1"></canvas>
+                    </div>
+                    <div class="div-medium-chart">
+                        <div class="medium-chart">
+                            <h3>Acertos e erros (%) em sua tentativa</h3>
+                            <div>
+                                <canvas class="select-disable" id="myChart2"></canvas>
+                            </div>
+                        </div>
+                        <div class="medium-chart">
+                            <h3>Seu tempo de conclusão do quiz</h3>
+                            <div>
+                                <canvas class="select-disable" id="myChart3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+<script src="../js/dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+<script>
+    const ctx1 = document.getElementById('myChart1');
+    const ctx2 = document.getElementById('myChart2');
+    const ctx3 = document.getElementById('myChart3');
+
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['1° questão', '2° questão', '3° questão', '4° questão', '5° questão', '6° questão', '7° questão', '8° questão', '9° questão', '10° questão', '11° questão', '12° questão'],
+            datasets: [{
+                label: 'Quantidade de acertos por cada pergunta do quiz',
+                data: [2, 4, 6, 1, 4, 8, 10, 11, 4, 5, 7, 1],
+                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                borderColor: ['rgba(255, 99, 132, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(255, 205, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(153, 102, 255, 0.4)', 'rgba(255, 99, 132, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(255, 205, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(153, 102, 255, 0.4)'],
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: ['Acertos', 'Erros'],
+            datasets: [{
+                label: '% de acertos e erros',
+                data: [75, 25],
+                backgroundColor: ['#74C365', '#FF5555'],
+                borderColor: ['#74C365', '#FF5555'],
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['1° questão', '2° questão', '3° questão', '4° questão', '5° questão', '6° questão', '7° questão', '8° questão', '9° questão', '10° questão', '11° questão', '12° questão'],
+            datasets: [{
+                label: 'Escalonamento do tempo (min)',
+                data: [2.20, 2.45, 3.20, 4.12, 4.50, 5.55, 6.2, 7.3, 8.0, 8.30, 9.0, 9.10],
+                backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(255, 159, 64, 0.8)', 'rgba(255, 205, 86, 0.8)', 'rgba(75, 192, 192, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(153, 102, 255, 0.8)', 'rgba(255, 99, 132, 0.8)', 'rgba(255, 159, 64, 0.8)', 'rgba(255, 205, 86, 0.8)', 'rgba(75, 192, 192, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(153, 102, 255, 0.8)'],
+                borderColor: ['rgba(255, 99, 132, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(255, 205, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(153, 102, 255, 0.4)', 'rgba(255, 99, 132, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(255, 205, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(153, 102, 255, 0.4)'],
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
