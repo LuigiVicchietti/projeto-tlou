@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <main>
+    <main id="global_container">
         <nav class="nav" id="nav">
             <button class="btn-menu" id="btn_menu"><img class="nav-img-menu select-disable"
                     src="../assets/img/icons/List.png" alt="Menu"></button>
@@ -30,7 +30,6 @@
                         <span class="select-disable">Quiz</span>
                     </a>
                 </li>
-                <li></li>
             </ul>
             <a href="../login.html">
                 <img class="img-sair select-disable" src="../assets/img/icons/exit.png" alt="Sair">
@@ -39,7 +38,7 @@
         </nav>
         <section class="section-content" id="section_content">
             <div class="top-content">
-                <h2 class="select-disable">Welcome back, <span id="user">Luigi</span></h2>
+                <h2 class="select-disable">Welcome back, <span id="user"></span></h2>
                 <div>
                     <div class="interaction select-disable" id="interaction">
                         <button class="select-disable" id="btn_mode">
@@ -53,26 +52,26 @@
             <div id="content">
                 <div class="content-column" id="content_info">
                     <ul class="info-list">
-                        <li>
-                            <img class="select-disable" src="../assets/img/icons/User.png" alt="Icone de user">
+                        <li name="info_block">
+                            <img class="select-disable" src="../assets/img/icons/User.png" alt="Icone de user" id="user_img">
                             <div class="li-info">Usuários cadastrados
                                 <span id="qtd_user">3</span>
                             </div>
                         </li>
-                        <li>
-                            <img class="select-disable" src="../assets/img/icons/icon-trofeu.png" alt="Icone de troféu">
+                        <li name="info_block">
+                            <img class="select-disable" src="../assets/img/icons/icon-trofeu.png" alt="Icone de troféu" id="trophy_img">
                             <div class="li-info">Quizes gabaritados
                                 <span id="qtd_quiz_gab">1</span>
                             </div>
                         </li>
-                        <li>
-                            <img class="select-disable" src="../assets/img/icons/Heart.png" alt="Icone de coração">
+                        <li name="info_block">
+                            <img class="select-disable" src="../assets/img/icons/Heart.png" alt="Icone de coração" id="heart_img">
                             <div class="li-info">Quiz curtido
                                 <span id="fav_char">3</span>
                             </div>
                         </li>
                     </ul>
-                    <div class="div-table">
+                    <div class="div-table" id="div_table">
                         <table>
                             <thead>
                                 <tr class="select-disable">
@@ -124,13 +123,13 @@
                     <div class="div-medium-chart">
                         <div class="medium-chart">
                             <h3>Acertos e erros (%) em sua tentativa</h3>
-                            <div>
+                            <div name="div_medium_chart">
                                 <canvas class="select-disable" id="myChart2"></canvas>
                             </div>
                         </div>
                         <div class="medium-chart">
                             <h3>Seu tempo de conclusão do quiz</h3>
-                            <div>
+                            <div name="div_medium_chart">
                                 <canvas class="select-disable" id="myChart3"></canvas>
                             </div>
                         </div>
@@ -150,6 +149,8 @@
 </script>
 
 <script>
+    var username = sessionStorage.NOME_USUARIO;
+    user.innerHTML = " " + username;
     const ctx1 = document.getElementById('myChart1');
     const ctx2 = document.getElementById('myChart2');
     const ctx3 = document.getElementById('myChart3');
@@ -161,8 +162,8 @@
             datasets: [{
                 label: 'Quantidade de acertos por cada pergunta do quiz',
                 data: [2, 4, 6, 1, 4, 8, 10, 11, 4, 5, 7, 1],
-                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
-                borderColor: ['rgba(255, 99, 132, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(255, 205, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(153, 102, 255, 0.4)', 'rgba(255, 99, 132, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(255, 205, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(153, 102, 255, 0.4)'],
+                backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(255, 205, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(255, 205, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+                borderColor: ['rgba(255, 99, 132, 0.9)', 'rgba(255, 159, 64, 0.9)', 'rgba(255, 205, 86, 0.9)', 'rgba(75, 192, 192, 0.9)', 'rgba(54, 162, 235, 0.9)', 'rgba(153, 102, 255, 0.9)', 'rgba(255, 99, 132, 0.9)', 'rgba(255, 159, 64, 0.9)', 'rgba(255, 205, 86, 0.9)', 'rgba(75, 192, 192, 0.9)', 'rgba(54, 162, 235, 0.9)', 'rgba(153, 102, 255, 0.9)'],
                 borderWidth: 1
             }]
         },
