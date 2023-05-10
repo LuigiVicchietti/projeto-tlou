@@ -135,7 +135,6 @@ a {
     cursor: pointer;
 }
 
-
 /* .header-content {
     display: flex;
     flex-direction: row;
@@ -197,6 +196,62 @@ a {
     background-color: #FFF;
 }
 
+.scroll-sign {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    bottom: 15vh;
+    left: 5vw;
+}
+
+.scroll-sign img {
+    max-width: 15px;
+}
+
+.scroll-sign img:nth-child(1) {
+    animation: subidinha 4s ease-in-out infinite;
+}
+
+.scroll-sign img:nth-child(2) {
+    animation: pulo 2s ease-in-out infinite;
+}
+
+@keyframes subidinha {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulo {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-6px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
 main {
     color: #FFF;
     background-color: #000;
@@ -256,6 +311,8 @@ main {
     display: flex;
     width: 100%;
     justify-content: flex-end;
+    align-items: center;
+    text-align: end;
     font-size: 15px;
     font-style: italic;
     padding: 5px;
@@ -561,6 +618,9 @@ main {
     background-image: url(../assets/img/image-interact-1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    box-shadow: 0px 170px 48px rgba(0, 0, 0, 0.01), 0px 109px 44px rgba(0, 0, 0, 0.06),
+        0px 61px 37px rgba(0, 0, 0, 0.2), 0px 27px 27px rgba(0, 0, 0, 0.34),
+        0px 7px 15px rgba(0, 0, 0, 0.39), 0px 0px 0px rgba(0, 0, 0, 0.4);
     padding: 2rem;
 }
 
@@ -568,7 +628,7 @@ main {
     content: '';
     position: absolute;
     width: 100%;
-    height: 200px;
+    height: 180px;
     background-image: url(../assets/img/fade/fade-invertido2.svg);
     top: 0;
     left: 0;

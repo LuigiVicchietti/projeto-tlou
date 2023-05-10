@@ -111,6 +111,8 @@
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
+                div_card.style.display = "block";
+                mensagem.innerHTML = "Campos inválidos ou erroneos!";
 
                 resposta.text().then(texto => {
                     console.error(texto);
@@ -125,7 +127,7 @@
     }
 
     function sumirCard() {
-        setTimeout(function () {div_card.style.display = "none";}, 3500);
+        setTimeout(function () { div_card.style.display = "none"; }, 3500);
     }
 
     document.getElementById("btn_signIn").addEventListener('click', sumirCard);

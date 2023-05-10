@@ -62,54 +62,64 @@
 
 <script src="./js/funcoes.js"></script>
 <script>
-const status = document.getElementById("img_status");
+    const status = document.getElementById("img_status");
 
     function cadastrar() {
         var usernameVar = input_username.value;
         var emailVar = input_email.value;
         var senhaVar = input_password.value;
         var confirmacaoSenhaVar = input_confirm_password.value;
+        var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
         if (usernameVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             div_card.style.display = "block";
             mensagem.innerHTML = "Preencha os campos corretamente!";
             return false;
+        } else if (senhaVar != confirmacaoSenhaVar) {
+            div_card.style.display = "block";
+            mensagem.innerHTML = "As senhas não se coincidem!";
+            return false;
         }
-        else {
 
+        if (input_email.value.match(regex)) {
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    usernameServer: usernameVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    div_card.style.display = "block";
+                    div_card.style.borderColor = "#74C365";
+                    status.setAttribute("src", "./assets/img/icons/ok.png");
+                    mensagem.innerHTML = "Cadastro realizado com sucesso!";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000")
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                    div_card.style.display = "block";
+                    mensagem.innerHTML = "Erro ao realizar o cadastro!";
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+            return false;
+        } else {
+            div_card.style.display = "block";
+            mensagem.innerHTML = "O e-mail inserido é inválido!";
+            return false;
         }
-
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                usernameServer: usernameVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                div_card.style.display = "block";
-                div_card.style.borderColor = "#74C365";
-                status.setAttribute("src", "./assets/img/icons/ok.png");
-                mensagem.innerHTML = "Cadastro realizado com sucesso!";
-
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
-        return false;
     }
 
     function sumirCard() {
