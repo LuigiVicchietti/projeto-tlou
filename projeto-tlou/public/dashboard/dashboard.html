@@ -18,14 +18,14 @@
             <button class="btn-menu" id="btn_menu"><img class="nav-img-menu select-disable"
                     src="../assets/img/icons/List.png" alt="Menu"></button>
             <ul class="nav-list" id="nav_list">
-                <li>
+                <li class="now">
                     <a href="./dashboard.html">
                         <img class="li-img select-disable"
                             src="https://static.tvtropes.org/pmwiki/pub/images/fireflies.png" alt="Icone vagalumes">
                         <span class="select-disable">Geral</span>
                     </a>
                 </li>
-                <li><a href="#">
+                <li><a href="./quizSelector.html">
                         <img class="li-img select-disable" src="../assets/img/icons/quiz-icon.png" alt="Icone quiz">
                         <span class="select-disable">Quiz</span>
                     </a>
@@ -38,7 +38,7 @@
         </nav>
         <section class="section-content" id="section_content">
             <div class="top-content">
-                <h2 class="select-disable">Welcome back, <span id="user"></span></h2>
+                <h2 class="select-disable">Good <span id="daytime">morning</span>, <span id="user"></span></h2>
                 <div>
                     <div class="interaction select-disable" id="interaction">
                         <button class="select-disable" id="btn_mode">
@@ -53,19 +53,22 @@
                 <div class="content-column" id="content_info">
                     <ul class="info-list">
                         <li name="info_block">
-                            <img class="select-disable" src="../assets/img/icons/User.png" alt="Icone de user" id="user_img">
+                            <img class="select-disable" src="../assets/img/icons/User.png" alt="Icone de user"
+                                id="user_img">
                             <div class="li-info">Usuários cadastrados
                                 <span id="qtd_user">3</span>
                             </div>
                         </li>
                         <li name="info_block">
-                            <img class="select-disable" src="../assets/img/icons/icon-trofeu.png" alt="Icone de troféu" id="trophy_img">
+                            <img class="select-disable" src="../assets/img/icons/icon-trofeu.png" alt="Icone de troféu"
+                                id="trophy_img">
                             <div class="li-info">Quizes gabaritados
                                 <span id="qtd_quiz_gab">1</span>
                             </div>
                         </li>
                         <li name="info_block">
-                            <img class="select-disable" src="../assets/img/icons/Heart.png" alt="Icone de coração" id="heart_img">
+                            <img class="select-disable" src="../assets/img/icons/Heart.png" alt="Icone de coração"
+                                id="heart_img">
                             <div class="li-info">Quiz curtido
                                 <span id="fav_char">3</span>
                             </div>
@@ -122,16 +125,44 @@
                     </div>
                     <div class="div-medium-chart">
                         <div class="medium-chart">
-                            <h3>Acertos e erros (%) em sua tentativa</h3>
+                            <h3>Seus acertos e erros (%)</h3>
                             <div name="div_medium_chart">
                                 <canvas class="select-disable" id="myChart2"></canvas>
                             </div>
                         </div>
                         <div class="medium-chart">
-                            <h3>Seu tempo de conclusão do quiz</h3>
+                            <h3>Tempo respondendo o quiz</h3>
                             <div name="div_medium_chart">
                                 <canvas class="select-disable" id="myChart3"></canvas>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content_qSelector">
+                <div id="qCard_container" class="qCard_container">
+                    <div class="qCard select-disable">
+                        <img class="img-quiz" src="../assets/img/img-quiz1.jpg" alt="imagem do quiz">
+                        <div class="quiz-describe">
+                            <h2 id="name_quiz">Quiz Geral</h2>
+                            <p>Pronto para desafiar seus conhecimentos sobre a série de jogos de The Last of Us?! Este
+                                quiz contém 12 perguntas com cinco possíveis respostas para cada uma delas, sendo as
+                                perguntas baseadas na série e no game de The Last of Us.</p>
+                        </div>
+                        <div class="qCard-actions">
+                            <button>Responder</button>
+                            <button id="btn_like">
+                                <img id="imgLike" src="../assets/img/icons/Heart.png" alt="like">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="qCard-empty">
+                        <img class="soon-warning" src="../assets/img/icons/soon-alert-icon.png" alt="Em breve">
+                        <div class="soon-describe">
+                            <h3>EM BREVE!</h3>
+                            <p>No momento não há mais quizes para responder. Fique atento a novas atualizações, quem
+                                sabe um
+                                novo quiz é feito, não é mesmo?!</p>
                         </div>
                     </div>
                 </div>
@@ -141,7 +172,8 @@
 </body>
 
 </html>
-<script src="../js/dashboard.js"></script>
+<script type="module" src="../js/funcoes.js"></script>
+<script type="module" src="../js/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>

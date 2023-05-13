@@ -1,8 +1,3 @@
-const btnMenu = document.getElementById("btn_menu")
-    , navbar = document.getElementById("nav")
-    , navlist = document.getElementById("nav_list")
-    , section = document.getElementById("section_content");
-
 const theme = document.getElementById("btn_mode")
     , globalContainer = document.getElementById("global_container")
     , input = document.getElementById("input_search")
@@ -14,13 +9,9 @@ const theme = document.getElementById("btn_mode")
     , liBlock = document.getElementsByName("info_block")
     , divTable = document.getElementById("div_table")
     , divBigChart = document.getElementsByClassName("div-big-chart")
-    , divMediumChart = document.getElementsByName("div_medium_chart");
-
-function navExpand() {
-    navbar.classList.toggle("expand");
-    navlist.classList.toggle("expand");
-    section.classList.toggle("expand");
-}
+    , divMediumChart = document.getElementsByName("div_medium_chart")
+    , qCardContainer = document.getElementById("qCard_container")
+    , imgLike = document.getElementById("imgLike");
 
 let i = 0;
 
@@ -43,6 +34,7 @@ function changeAlt() {
     trophyImg.setAttribute("src", "../assets/img/icons/Trophy-white.png");
     heartImg.setAttribute("src", "../assets/img/icons/Heart-white.png");
     input.style.backgroundImage = "url('../assets/img/icons/Search-white.png')";
+    imgLike.setAttribute("src", "../assets/img/icons/Heart-white.png");
 }
 
 function changeDefault() {
@@ -51,6 +43,7 @@ function changeDefault() {
     trophyImg.setAttribute("src", "../assets/img/icons/icon-trofeu.png");
     heartImg.setAttribute("src", "../assets/img/icons/Heart.png");
     input.style.backgroundImage = "url('../assets/img/icons/icon-search.png')";
+    imgLike.setAttribute("src", "../assets/img/icons/Heart.png");
 }
 
 function changeTheme() {
@@ -59,6 +52,7 @@ function changeTheme() {
     typeMode.classList.toggle("ativo");
     input.classList.toggle("ativo");
     divTable.classList.toggle("ativo");
+    qCardContainer.classList.toggle("ativo");
 
     for (var i = 0; i < liBlock.length; i++) {
         liBlock[i].classList.toggle("ativo")
@@ -69,6 +63,19 @@ function changeTheme() {
     for (var i = 0; i < divMediumChart.length; i++) {
         divMediumChart[i].classList.toggle("ativo")
     }
+}
+
+const btnMenu = document.getElementById("btn_menu");
+
+// Expansão de elementos (Dashboard, seleção de quiz)
+const navbar = document.getElementById("nav")
+    , navlist = document.getElementById("nav_list")
+    , section = document.getElementById("section_content");
+
+function navExpand() {
+    navbar.classList.toggle("expand");
+    navlist.classList.toggle("expand");
+    section.classList.toggle("expand");
 }
 
 btnMenu.addEventListener('click', navExpand);

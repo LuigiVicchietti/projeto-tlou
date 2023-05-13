@@ -24,5 +24,5 @@ Site construido para a terceira sprint do primeiro semestre de 2023 da faculdade
 #
 
 - 📌 Em progresso.
-- 🛠 Site responsivo criado sem uso de frameworks. Totalmente feito em HTML, CSS e JS puro.
+- 🛠 Site não responsivo (no momento) criado sem uso de frameworks. Totalmente feito em HTML, CSS e JS puro.
 - 🔗 sem link no momento
