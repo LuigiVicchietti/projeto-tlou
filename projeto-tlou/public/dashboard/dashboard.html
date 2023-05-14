@@ -9,7 +9,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <title>Dashboard - Projeto</title>
+    <title>Área Restrita - Projeto</title>
 </head>
 
 <body>
@@ -18,14 +18,15 @@
             <button class="btn-menu" id="btn_menu"><img class="nav-img-menu select-disable"
                     src="../assets/img/icons/List.png" alt="Menu"></button>
             <ul class="nav-list" id="nav_list">
-                <li class="now">
-                    <a href="./dashboard.html">
+                <li id="dash_li" class="now">
+                    <a id="a_dash">
                         <img class="li-img select-disable"
                             src="https://static.tvtropes.org/pmwiki/pub/images/fireflies.png" alt="Icone vagalumes">
                         <span class="select-disable">Geral</span>
                     </a>
                 </li>
-                <li><a href="./quizSelector.html">
+                <li id="qSelec_li">
+                    <a id="a_qSelec">
                         <img class="li-img select-disable" src="../assets/img/icons/quiz-icon.png" alt="Icone quiz">
                         <span class="select-disable">Quiz</span>
                     </a>
@@ -38,7 +39,7 @@
         </nav>
         <section class="section-content" id="section_content">
             <div class="top-content">
-                <h2 class="select-disable">Good <span id="daytime">morning</span>, <span id="user"></span></h2>
+                <h2 class="select-disable">Good <span id="daytime"></span>, <span id="user"></span></h2>
                 <div>
                     <div class="interaction select-disable" id="interaction">
                         <button class="select-disable" id="btn_mode">
@@ -150,7 +151,7 @@
                                 perguntas baseadas na série e no game de The Last of Us.</p>
                         </div>
                         <div class="qCard-actions">
-                            <button>Responder</button>
+                            <a href="#"><button>Responder</button></a>
                             <button id="btn_like">
                                 <img id="imgLike" src="../assets/img/icons/Heart.png" alt="like">
                             </button>

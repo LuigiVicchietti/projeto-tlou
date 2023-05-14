@@ -55,7 +55,7 @@ main {
     background-color: #F5F5F5;
     gap: 3vw;
     transition: 0.5s;
-    padding: 2rem 2vw;
+    padding: 2rem 1.5vw;
 }
 
 nav {
@@ -343,6 +343,13 @@ section {
     height: 100vh;
     gap: 2vw;
     padding-top: 5vh;
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
+}
+
+#content.hide {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
 }
 
 .content-column {
@@ -590,9 +597,16 @@ section {
     align-items: flex-start;
     width: 85vw;
     height: 100vh;
-    gap: 3vw;
-    padding: 5vh 1vw 0 1vw;
+    gap: 2vw;
+    padding-top: 5vh;
     overflow: scroll hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+}
+
+#content_qSelector.show {
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
 }
 
 .qCard_container {
@@ -602,6 +616,7 @@ section {
     align-items: flex-start;
     height: 75vh;
     gap: 4vw;
+    padding-left: 0.5rem;
 }
 
 .qCard {
@@ -611,7 +626,7 @@ section {
     align-items: center;
     width: 25vw;
     height: 75vh;
-    background: linear-gradient(323.02deg, rgba(200, 200, 200, 0.55) 56.65%, rgba(255, 255, 255, 0.2) 100%);
+    background: linear-gradient(323.02deg, rgba(200, 200, 200, 0.4) 26.65%, rgba(255, 255, 255, 0.5) 100%);
     border: 1px solid #000;
     border-radius: 10px;
     -webkit-box-shadow: 15px 14px 12px 0px rgba(0, 0, 0, 0.75);
@@ -658,13 +673,14 @@ section {
 .qCard-actions {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     gap: 0.5vw;
+    padding: 0 2vw;
 }
 
-.qCard-actions button {
+.qCard-actions a button {
     position: relative;
     width: 10vw;
     color: #000;
@@ -679,18 +695,18 @@ section {
     outline: none;
 }
 
-.qCard-actions button::before {
+.qCard-actions a button::before {
     transform: scaleX(0);
     transform-origin: bottom right;
 }
 
-.qCard-actions button:hover::before {
+.qCard-actions a button:hover::before {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
 
-.qCard-actions button:first-of-type::before {
-    content: " ";
+.qCard-actions a button:first-of-type::before {
+    content: "";
     display: block;
     position: absolute;
     top: 0;
