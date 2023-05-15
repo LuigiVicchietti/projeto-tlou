@@ -331,7 +331,7 @@ section {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 35%;
+    width: 40%;
     font-size: 16px;
     height: 10vh;
     border-radius: 3px;
@@ -393,31 +393,58 @@ input[type="radio"]:focus {
 }
 
 #btn_play {
+    position: relative;
     justify-content: center;
     align-items: center;
+    width: 10vw;
     color: #FFF;
     font-family: 'Modern Sans';
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: 700;
     background: transparent;
-    border-radius: 5px;
-    border: transparent;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75);
-    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75);
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: 8px 10px 10px 0 rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 10px 10px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 8px 10px 10px 0 rgba(0, 0, 0, 0.75);
     padding: 0.8rem;
-    transition: 0.2s ease-out;
+    transition: 0.3s ease-in;
     outline: none;
+    cursor: pointer;
+}
+
+#btn_play::before {
+    transform: scaleX(0);
+    transform-origin: bottom right;
 }
 
 #btn_play:hover {
-    -webkit-transform: scale(1.06);
-    -moz-transform: scale(1.06);
-    -o-transform: scale(1.06);
-    -ms-transform: scale(1.06);
-    transform: scale(1.06);
+    -webkit-transform: scale(1.03);
+    -moz-transform: scale(1.03);
+    -o-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
 }
+
+#btn_play:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#btn_play::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    inset: 0 0 0 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(200, 200, 200, 0.1) 61.92%, #151515 100%);
+    z-index: -1;
+    transition: transform .3s ease;
+}
+
 
 #btn_finalizar {
     position: absolute;
@@ -435,6 +462,7 @@ input[type="radio"]:focus {
     transition: 0.6s ease-out;
     bottom: 3vh;
     right: 3vw;
+    cursor: pointer;
 }
 
 #btn_finalizar::before {
@@ -456,7 +484,7 @@ input[type="radio"]:focus {
     bottom: 0;
     left: 0;
     inset: 0 0 0 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(200, 200, 200, 0.3) 61.92%, #151515 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(200, 200, 200, 0.1) 61.92%, #151515 100%);
     z-index: -1;
     transition: transform .3s ease;
 }
@@ -555,23 +583,22 @@ input[type="radio"]:focus {
     height: 1rem;
     background: #E0E0E0;
     border-radius: 100%;
-    top: 37%;
+    top: 3.3vh;
     left: 3vw;
 }
 
 #questions_container li::after {
     content: '';
     position: absolute;
-    width: 2.5rem;
-    height: 2.5rem;
-    background-image: url(../assets/img/icons/ok.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #74C365;
+    border: 1px solid #151515;
     border-radius: 100%;
     opacity: 0;
     transition: opacity 0.4s ease-in;
-    top: 1%;
-    left: 2.5vw;
+    top: 3.5vh;
+    left: 3.05vw;
 }
 
 #questions_container li.answered::after {

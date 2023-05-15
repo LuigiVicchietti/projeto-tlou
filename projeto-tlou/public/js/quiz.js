@@ -39,6 +39,37 @@ const go2 = document.getElementById("go2")
     , back11 = document.getElementById("back11")
     , btnFinish = document.getElementById("btn_finalizar");
 
+//Criando o cronômetro
+let hora = 0
+    , minuto = 0
+    , seg = 0;
+let cronoGeral;
+
+function startCrono() {
+    pauseCrono();
+    cronoGeral = setInterval(() => { timer(); }, 1000)
+}
+function pauseCrono() {
+    clearInterval(cronoGeral);
+}
+
+function timer() {
+    if ((seg += 1) == 60) {
+        seg = 0;
+        minuto++;
+    }
+    if (minuto == 60) {
+        minuto = 0;
+        hora++;
+    }
+    document.getElementById('hour').innerText = returnData(hora);
+    document.getElementById('min').innerText = returnData(minuto);
+    document.getElementById('sec').innerText = returnData(seg);
+}
+function returnData(input) {
+    return input > 9 ? input : `0${input}`
+}
+
 //Declarando os radios inputs
 const Q1resp1 = document.getElementById("Q1resp1")
     , Q1resp2 = document.getElementById("Q1resp2")
@@ -92,7 +123,7 @@ const Q1resp1 = document.getElementById("Q1resp1")
 // Declarando LI de cada questão
 const li_Q1 = document.getElementById("li_Q1")
     , li_Q2 = document.getElementById("li_Q2")
-    , li_Q3 = document.getElementById("li_Q4")
+    , li_Q3 = document.getElementById("li_Q3")
     , li_Q4 = document.getElementById("li_Q4")
     , li_Q5 = document.getElementById("li_Q5")
     , li_Q6 = document.getElementById("li_Q6")
@@ -105,6 +136,7 @@ const li_Q1 = document.getElementById("li_Q1")
 
 //Declarando cada função dos botões
 function startQuiz() {
+    startCrono();
     startBox.classList.toggle('hide');
     setTimeout(function () { startBox.style.display = "none"; }, 410);
     setTimeout(function () { priBox.style.display = "flex"; }, 411);
@@ -335,7 +367,7 @@ function markOn12() {
 }
 
 function finish() {
-
+    pauseCrono();
 }
 
 btnPlay.addEventListener('click', startQuiz);
