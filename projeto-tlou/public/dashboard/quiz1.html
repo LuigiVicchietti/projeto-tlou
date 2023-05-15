@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/icon-page.webp" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/quiz.css">
+    <title> Quiz Geral - Projeto</title>
+</head>
+
+<body>
+    <main>
+        <section id="content_question" data-aos="fade-right" data-aos-duration="1000">
+            <img class="firefly select-disable" src="https://static.tvtropes.org/pmwiki/pub/images/fireflies.png"
+                alt="Logo firefly">
+            <div class="question_box select-disable" id="letstart">
+                <h2 class="question_title">Vamos Começar!</h2>
+                <p class="quiz_text">Antes de começar o quiz, você tem que estar ciente que após clicar no botão
+                    "começar", o quiz se
+                    iniciará e começará a contar seu tempo e suas respostas.</p>
+                <ul>
+                    <li>O quiz terá 12 questões com 4 alternativas cada.</li>
+                    <li>Você poderá usar quanto tempo quiser para responder.</li>
+                    <li>Você também conseguirá navegar entre as questões.</li>
+                    <li>Haverá um placar com sua pontuação e stats no final!</li>
+                </ul>
+                <button class="select-disable" id="btn_play">começar</button>
+            </div>
+            <div class="question_box select-disable" id="question1_box">
+                <h2 class="question_title"> 1° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question1.jpg"
+                    alt="Cena final The Last Of Us Part I">
+                <p class="quiz_text"> Dentre as opções abaixo, qual filme foi inspiração para a criação da cena final
+                    do primeiro jogo da série?</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ1" id="Q1resp1" value="1">
+                            <span>Memento</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ1" id="Q1resp2" value="2">
+                            <span>Se7en</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ1" id="Q1resp3" value="3">
+                            <span>I'am the legend</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ1" id="Q1resp4" value="4">
+                            <span>The Road</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go2">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question2_box">
+                <h2 class="question_title"> 2° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question2.jpg"
+                    alt="Cena final The Last Of Us Part II">
+                <p class="quiz_text"> Ao final de The Last Of Us Part II, Ellie após se ver abandonada e sem ninguém,
+                    ela escreve duas iniciais numa árvore, remetendo ao quê?</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ2" id="Q2resp1" value="1">
+                            <span>E + J (Ellie e Joel)</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ2" id="Q2resp2" value="2">
+                            <span>E + D (Ellie e Dina)</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ2" id="Q2resp3" value="3">
+                            <span>D + J (Dina e Jesse Jr)</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ2" id="Q2resp4" value="4">
+                            <span>D + J (Dina e Joel)</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go3">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back1">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question3_box">
+                <h2 class="question_title"> 3° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question3.jpg" alt="Enquadro dos soldados">
+                <p class="quiz_text"> Quando Joel e Tess descobrem que Ellie está infectada, após a abordagem dos
+                    soldados, há quanto tempo Ellie estava infectada?</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ3" id="Q3resp1" value="1">
+                            <span>3 Semanas</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ3" id="Q3resp2" value="2">
+                            <span>2 Semanas</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ3" id="Q3resp3" value="3">
+                            <span>13 Dias</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ3" id="Q3resp4" value="4">
+                            <span>1 Mês</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go4">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back2">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question4_box">
+                <h2 class="question_title"> 4° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question4.avif"
+                    alt="Imagem de um Estalador atacando">
+                <p class="quiz_text"> Quantos tipos diferentes de monstros/zumbis existem no universo de The Last Of Us?
+                </p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ4" id="Q4resp1" value="1">
+                            <span>Seis tipos</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ4" id="Q4resp2" value="2">
+                            <span>Cinco tipos</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ4" id="Q4resp3" value="3">
+                            <span>Sete tipos</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ4" id="Q4resp4" value="4">
+                            <span>Quatro tipos</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go5">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back3">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question5_box">
+                <h2 class="question_title"> 5° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question5.webp"
+                    alt="Joel em The Last Of Us Part II">
+                <p class="quiz_text"> Qual a profissão de Joel antes do surto do cordiceps? E qual era seu sonho de
+                    profissão? Eram respectivamente:</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ5" id="Q5resp1" value="1">
+                            <span>Carpinteiro e Engenheiro</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ5" id="Q5resp2" value="2">
+                            <span>Empreiteiro e Músico</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ5" id="Q5resp3" value="3">
+                            <span>Carpinteiro e Músico</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ5" id="Q5resp4" value="4">
+                            <span>Engenheiro e Astronauta</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go6">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back4">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question6_box">
+                <h2 class="question_title"> 6° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question6.jpg"
+                    alt="Joel e Ellie na capsula espacial">
+                <p class="quiz_text"> Durante o flashback de Joel e Ellie no museu abandonado, há uma simbologia do que
+                    aconteceria com Joel no futuro. Qual seria essa simbologia?</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ6" id="Q6resp1" value="1">
+                            <span>Capsula Espacial Isolada</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ6" id="Q6resp2" value="2">
+                            <span>T-Rex isolado rodeado de árvores densas</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ6" id="Q6resp3" value="3">
+                            <span>Alce emboscado por um grupo de lobos</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ6" id="Q6resp4" value="4">
+                            <span>Telescópio apontado a um planeta caido</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go7">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back5">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question7_box">
+                <h2 class="question_title"> 7° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question7.webp" alt="Série de The Last Of UsI">
+                <p class="quiz_text"> Na série de The Last Of Us, os interpretes de alguns personagens eram os
+                    mesmos que faziam o modelo dos personagens do jogo. Os modelos de Joel, Ellie e Tommy do
+                    jogo eram na série:</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ7" id="Q7resp1" value="1">
+                            <span>Joel, Enfermeira e Bandido</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ7" id="Q7resp2" value="2">
+                            <span>Bandido, Mãe da Ellie e James</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ7" id="Q7resp3" value="3">
+                            <span>David, Infectada e Soldado</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ7" id="Q7resp4" value="4">
+                            <span>James, Mãe de Ellie e Soldado</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go8">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back6">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question8_box">
+                <h2 class="question_title"> 8° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question8.png"
+                    alt="Ellie e Sam na série The Last Of Us">
+                <p class="quiz_text"> Na série, Sam tem uma caracteristica diferente a do game e também tem sua infecção
+                    exposta a Ellie de uma forma diferente que a mesma tenta trata-la. Qual a característica e como
+                    Ellie tentou trata-lo?</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ8" id="Q8resp1" value="1">
+                            <span>Surdo; Mordendo-o</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ8" id="Q8resp2" value="2">
+                            <span>Surdo e Mudo; Passando seu sangue na ferida</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ8" id="Q8resp3" value="3">
+                            <span>Mudo; Cortou a infecção com canivete</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ8" id="Q8resp4" value="4">
+                            <span>Surdo e Mudo; Não tratou, só lhe confortou</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go9">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back7">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question9_box">
+                <h2 class="question_title"> 9° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question9.webp"
+                    alt="Rei dos ratos The Last Of Us Part II">
+                <p class="quiz_text">Existe um infectado que além de ser uma referencia de um
+                    outro game, também é inspirado num raro acontecimento da vida real. Qual game e acontecimento estão
+                    relacionados a ele?</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ9" id="Q9resp1" value="1">
+                            <span>Outlast e Abraço da morte</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ9" id="Q9resp2" value="2">
+                            <span>Outlast e Surto de ratos</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ9" id="Q9resp3" value="3">
+                            <span>Amnésia e Surto de ratos</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ9" id="Q9resp4" value="4">
+                            <span>Inside e Rattenkönig</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go10">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back8">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question10_box">
+                <h2 class="question_title"> 10° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question10.webp"
+                    alt="Cena final The Last Of Us Part I">
+                <p class="quiz_text"> Quais os nomes dos principais grupos rebeldes do primeiro e segundo game da série,
+                    respectivamente?</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ10" id="Q10resp1" value="1">
+                            <span>Wolves e Vagalumes</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ10" id="Q10resp2" value="2">
+                            <span>Vagalumes e WLF</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ10" id="Q10resp3" value="3">
+                            <span>Vagalumes e Senobitas</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ10" id="Q10resp4" value="4">
+                            <span>Vagalumes e Wolves</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go11">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back9">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question11_box">
+                <h2 class="question_title"> 11° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question11.jpg"
+                    alt="Cena final The Last Of Us Part II com Joel">
+                <p class="quiz_text">Durante a ultima interação com Joel, Joel diz a Ellie a respeito de suas ações no
+                    hospital. Ele diz a ela que:</p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ11" id="Q11resp1" value="1">
+                            <span>Se arrepende do que fez e quer perdão</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ11" id="Q11resp2" value="2">
+                            <span>Não se arrepende de suas ações e faria tudo de novo</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ11" id="Q11resp3" value="3">
+                            <span>Se arrepende e está buscando melhorar</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ11" id="Q11resp4" value="4">
+                            <span>Não se arrepende, mas sente muito por Ellie</span>
+                        </label>
+                    </li>
+                </ul>
+                <a class="actionGo" id="go12">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
+                        alt="Avançar">
+                </a>
+                <a class="actionBack" id="back10">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+            <div class="question_box select-disable" id="question12_box">
+                <h2 class="question_title"> 12° Questão</h2>
+                <img class="question-photos" src="../assets/img/quiz-img/question12.jpg"
+                    alt="Cena final da ilha de Cataline The Last Of Us Part II">
+                <p class="quiz_text">
+                    Qual o gatilho que fez Ellie poupar a vida de Abby no final do segundo game?
+                </p>
+                <ul class="answer-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ12" id="Q12resp1" value="1">
+                            <span>Consegue lembrar do rosto de Joel e sua ultima conversa</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ12" id="Q12resp2" value="2">
+                            <span>Pensa na Dina e Tommy e como eles sofreram por vingança</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ12" id="Q12resp3" value="3">
+                            <span>Se põe no lugar de Abby e Lev</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="answerQ12" id="Q12resp4" value="4">
+                            <span>Repara que sua vingança não tem sentido</span>
+                        </label>
+                    </li>
+                </ul>
+                <button id="btn_finalizar">Finalizar</button>
+                <a class="actionBack" id="back11">
+                    <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
+                </a>
+            </div>
+        </section>
+        <div id="info_container" data-aos="fade-up" data-aos-duration="700">
+            <text>Tempo respondendo:</text>
+            <h2 id="quiz_time">00:00:00</h2>
+            <div class="div_fantasma">
+                <img class="arrow-down" src="../assets/img/icons/seta.png" alt="Sinalizador de mais itens">
+                <ol class="select-disable" id="questions_container">
+                    <li id="li_Q1">
+                        <span>1° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q2">
+                        <span>2° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q3">
+                        <span>3° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q4">
+                        <span>4° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q5">
+                        <span>5° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q6">
+                        <span>6° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q7">
+                        <span>7° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q8">
+                        <span>8° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q9">
+                        <span>9° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q10">
+                        <span>10° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q11">
+                        <span>11° QUESTÃO</span>
+                    </li>
+                    <li id="li_Q12">
+                        <span>12° QUESTÃO</span>
+                    </li>
+                </ol>
+            </div>
+            <a class="select-disable" href="./dashboard.html">
+                <img class="img-sair select-disable" src="../assets/img/icons/exit.png" alt="Sair">
+                <button>SAIR</button>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>
+<script type="module" src="../js/funcoes.js"></script>
+<script src="../js/quiz.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
