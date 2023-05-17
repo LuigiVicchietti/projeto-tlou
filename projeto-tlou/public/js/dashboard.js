@@ -149,5 +149,23 @@ function changePage() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/usuarios/exibirUser', {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then((resposta) => {
+        if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((jsonQtdUser) => {
+                document.getElementById('qtd_user').innerText = `${jsonQtdUser[0].idUser}`
+            })
+        } else {
+            console.log('Erro no .THEN');
+        }
+    })
+})
+
 aDash.addEventListener('click', changePage);
 aQSelec.addEventListener('click', changePage);

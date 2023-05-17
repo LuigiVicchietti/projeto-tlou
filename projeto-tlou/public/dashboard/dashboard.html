@@ -57,7 +57,7 @@
                             <img class="select-disable" src="../assets/img/icons/User.png" alt="Icone de user"
                                 id="user_img">
                             <div class="li-info">Usuários cadastrados
-                                <span id="qtd_user">3</span>
+                                <span id="qtd_user"></span>
                             </div>
                         </li>
                         <li name="info_block">
@@ -70,8 +70,8 @@
                         <li name="info_block">
                             <img class="select-disable" src="../assets/img/icons/Heart.png" alt="Icone de coração"
                                 id="heart_img">
-                            <div class="li-info">Quiz curtido
-                                <span id="fav_char">3</span>
+                            <div class="li-info">Quizes curtidos
+                                <span id="fav_char">1</span>
                             </div>
                         </li>
                     </ul>
@@ -84,37 +84,7 @@
                                     <th>Pontuação</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1°</td>
-                                    <td>Luigi</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>2°</td>
-                                    <td>Luigi</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>3°</td>
-                                    <td>Luigi</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>4°</td>
-                                    <td>Luigi</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>5°</td>
-                                    <td>Luigi</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>6°</td>
-                                    <td>Luigi</td>
-                                    <td>12</td>
-                                </tr>
+                            <tbody id="tbody_content">
                             </tbody>
                         </table>
                     </div>
@@ -132,7 +102,7 @@
                             </div>
                         </div>
                         <div class="medium-chart">
-                            <h3>Tempo respondendo o quiz</h3>
+                            <h3>Seus acertos X tempo gasto (min)</h3>
                             <div name="div_medium_chart">
                                 <canvas class="select-disable" id="myChart3"></canvas>
                             </div>
@@ -175,6 +145,7 @@
 </html>
 <script type="module" src="../js/funcoes.js"></script>
 <script type="module" src="../js/dashboard.js"></script>
+<script src="../js/rankingDash.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
@@ -233,14 +204,14 @@
     });
 
     new Chart(ctx3, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['1° questão', '2° questão', '3° questão', '4° questão', '5° questão', '6° questão', '7° questão', '8° questão', '9° questão', '10° questão', '11° questão', '12° questão'],
+            labels: ['Acertos', 'Tempo gasto'],
             datasets: [{
-                label: 'Escalonamento do tempo (min)',
-                data: [2.20, 2.45, 3.20, 4.12, 4.50, 5.55, 6.2, 7.3, 8.0, 8.30, 9.0, 9.10],
-                backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(255, 159, 64, 0.8)', 'rgba(255, 205, 86, 0.8)', 'rgba(75, 192, 192, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(153, 102, 255, 0.8)', 'rgba(255, 99, 132, 0.8)', 'rgba(255, 159, 64, 0.8)', 'rgba(255, 205, 86, 0.8)', 'rgba(75, 192, 192, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(153, 102, 255, 0.8)'],
-                borderColor: ['rgba(255, 99, 132, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(255, 205, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(153, 102, 255, 0.4)', 'rgba(255, 99, 132, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(255, 205, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(153, 102, 255, 0.4)'],
+                label: 'Acertos em relação ao tempo gasto (min)',
+                data: [12, 3.20],
+                backgroundColor: ['rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.8)'],
+                borderColor: ['rgba(153, 102, 255, 0.9)', 'rgba(255, 159, 64, 0.4)'],
                 borderWidth: 1
             }]
         },

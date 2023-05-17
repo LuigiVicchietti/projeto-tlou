@@ -20,4 +20,12 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
+router.get("/exibirRankDash", function (req, res) {
+    usuarioController.exibirRankDash(req, res);
+});
+
+router.get("/exibirUser", function (req, res) {
+    usuarioController.exibirUser(req, res);
+});
+
 module.exports = router;

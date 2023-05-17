@@ -1,3 +1,4 @@
+const { response } = require("express");
 var usuarioModel = require("../models/usuarioModel");
 
 var sessoes = [];
@@ -94,9 +95,43 @@ function cadastrar(req, res) {
     }
 }
 
+function exibirRankDash(req, res) {
+    usuarioModel.exibirRankDash()
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado');
+            }
+        }).catch(
+            (erro) => {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
+}
+
+function exibirUser(req, res) {
+    usuarioModel.exibirUser()
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado');
+            }
+        }).catch(
+            (erro) => {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
+    exibirRankDash,
+    exibirUser,
     testar
 }
