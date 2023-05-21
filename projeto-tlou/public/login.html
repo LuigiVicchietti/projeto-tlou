@@ -98,9 +98,9 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.EMAIL_USUARIO = json.password;
+                    sessionStorage.NOME_USUARIO = json.username;
+                    sessionStorage.ID_USUARIO = json.iduser;
 
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";

@@ -719,20 +719,40 @@ section {
     transition: transform .3s ease;
 }
 
-#btn_like {
-    background: transparent;
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     border: none;
-    outline: none;
-    z-index: 2;
-}
-
-#btn_like:hover {
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-}
+    background-color: transparent;
+    position: relative;
+  }
+  
+  .btn:hover > .icon {
+    transform: scale(1.06);
+    cursor: pointer;
+    transition: .2s ease-in-out;
+  }
+  
+  .btn:focus > .icon {
+    fill: #fd1853;
+    animation: grosseur .2s ease-in;
+  }
+  
+  @keyframes grosseur {
+    0% {
+      width: 35px;
+      height: 35px;
+      fill: #fd1853;
+    }
+  
+    100% {
+      width: 35px;
+      height: 35px;
+      fill: #fd1853;
+    }
+  }
 
 .qCard-actions img {
     max-width: 25px;

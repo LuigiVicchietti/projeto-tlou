@@ -46,7 +46,6 @@ function changeThemeInside() {
     trophyImg.setAttribute("src", "../assets/img/icons/Trophy-white.png");
     heartImg.setAttribute("src", "../assets/img/icons/Heart-white.png");
     input.style.backgroundImage = "url('../assets/img/icons/Search-white.png')";
-    imgLike.setAttribute("src", "../assets/img/icons/Heart-white.png");
 
     for (var i = 0; i < liBlock.length; i++) {
         liBlock[i].classList.toggle("ativo")
@@ -73,7 +72,6 @@ function undoChangeThemeInside() {
     trophyImg.setAttribute("src", "../assets/img/icons/icon-trofeu.png");
     heartImg.setAttribute("src", "../assets/img/icons/Heart.png");
     input.style.backgroundImage = "url('../assets/img/icons/icon-search.png')";
-    imgLike.setAttribute("src", "../assets/img/icons/Heart.png");
 
     for (var i = 0; i < liBlock.length; i++) {
         liBlock[i].classList.toggle("ativo")
@@ -150,6 +148,34 @@ function changePage() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    fetch('/usuarios/exibirRankDash', {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then((resposta) => {
+        if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((jsonRankDash) => {
+                let position = 1;
+                jsonRankDash.forEach(row => {
+                    document.getElementById('tbody_content').innerHTML += `
+                    <tr>
+                        <td>${position}°</td>
+                        <td>${row.NomeUser}</td>
+                        <td>${row.Pontuacao}</td>
+                    </tr>
+                    `
+                    position++
+                });
+            })
+        } else {
+            console.log('Erro no .THEN');
+        }
+    })
+})
+
+document.addEventListener('DOMContentLoaded', () => {
     fetch('/usuarios/exibirUser', {
         method: 'GET',
         headers: {
@@ -160,6 +186,99 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(resposta);
             resposta.json().then((jsonQtdUser) => {
                 document.getElementById('qtd_user').innerText = `${jsonQtdUser[0].idUser}`
+            })
+        } else {
+            console.log('Erro no .THEN');
+        }
+    })
+})
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     fetch('/quiz_like/listar', {
+//         method: 'GET',
+//         headers: {
+//             'Content-type': 'application/json'
+//         }
+//     }).then((resposta) => {
+//         if (resposta.ok) {
+//             console.log(resposta);
+//             resposta.json().then((jsonRankDash) => {
+//                 console.log(jsonRankDash);
+//                 jsonRankDash.forEach(row => {
+//                     document.getElementById('content_qSelector').innerHTML += `
+//                     <div id="qCard_container" class="qCard_container">
+//                     <div class="qCard select-disable">
+//                         <img class="img-quiz" src="../assets/img/img-quiz1.jpg" alt="imagem do quiz">
+//                         <div class="quiz-describe">
+//                             <h2 id="name_quiz">${row.idquiz}</h2>
+//                             <p>Pronto para desafiar seus conhecimentos sobre a série de jogos de The Last of Us?! Este
+//                                 quiz contém 12 perguntas com quatro possíveis respostas para cada uma delas, sendo as
+//                                 perguntas baseadas na série e no game de The Last of Us.</p>
+//                         </div>
+//                         <div class="qCard-actions">
+//                             <a href="./quiz1.html"><button>Responder</button></a>
+//                             <div style="display: flex; justify-content: center; align-items: center; font-size: 18px;">
+//                                 <span id="qtdCurtida${row.idquiz}">?</span>
+//                                 <button id="btn_like">
+//                                     <img id="imgLike" src="../assets/img/icons/Heart.png" alt="like">
+//                                 </button>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     `
+//                 });
+//                 document.getElementById(`content_qSelector`).innerHTML += `
+//                 <div class="qCard-empty select-disable">
+//                         <img class="soon-warning" src="../assets/img/icons/soon-alert-icon.png" alt="Em breve">
+//                         <div class="soon-describe">
+//                             <h3>EM BREVE!</h3>
+//                             <p>No momento não há mais quizes para responder. Fique atento a novas atualizações, quem
+//                                 sabe um
+//                                 novo quiz é feito, não é mesmo?!</p>
+//                         </div>
+//                     </div>
+//                 </div>
+//                 `
+//             })
+//         } else {
+//             console.log('Erro no .THEN');
+//         }
+//     })
+// })
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/quiz_like/likeByQuiz', {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then((resposta) => {
+        if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((jsonLikeAllQuiz) => {
+                document.getElementById('like_all_quiz').innerText = `${jsonLikeAllQuiz[0].qtdTotalLike}`
+            })
+        } else {
+            console.log('Erro no .THEN');
+        }
+    })
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/quiz_like/likeByQuizId', {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then((resposta) => {
+        if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((jsonLikeQuiz) => {
+                jsonLikeQuiz.forEach(cardLike => {
+                    console.log(cardLike)
+                    let spaceLike = document.getElementById(`qtdCurtida${cardLike.idQuiz}`);
+                    spaceLike.innerText = `${cardLike.quizLikes}`
+                })
             })
         } else {
             console.log('Erro no .THEN');

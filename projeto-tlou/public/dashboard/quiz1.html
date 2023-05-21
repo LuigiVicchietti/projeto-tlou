@@ -17,6 +17,7 @@
         <section id="content_question" data-aos="fade-right" data-aos-duration="1000">
             <img class="firefly select-disable" src="https://static.tvtropes.org/pmwiki/pub/images/fireflies.png"
                 alt="Logo firefly">
+
             <div class="question_box select-disable" id="letstart">
                 <h2 class="question_title">Vamos Começar!</h2>
                 <p class="quiz_text">Antes de começar o quiz, você tem que estar ciente que após clicar no botão
@@ -28,8 +29,9 @@
                     <li>Você também conseguirá navegar entre as questões.</li>
                     <li>Haverá um placar com sua pontuação e stats no final!</li>
                 </ul>
-                <button class="select-disable" id="btn_play">começar</button>
+                <button class="select-disable" id="btn_play" onclick="startQuiz()">começar</button>
             </div>
+
             <div class="question_box select-disable" id="question1_box">
                 <h2 class="question_title"> 1° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question1.jpg"
@@ -62,11 +64,12 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go2">
+                <a class="actionGo"  onclick="goQuestion2()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question2_box">
                 <h2 class="question_title"> 2° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question2.jpg"
@@ -99,14 +102,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go3">
+                <a class="actionGo" onclick="goQuestion3()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back1">
+                <a class="actionBack" onclick="backQuestion1()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question3_box">
                 <h2 class="question_title"> 3° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question3.jpg" alt="Enquadro dos soldados">
@@ -138,14 +142,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go4">
+                <a class="actionGo" onclick="goQuestion4()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back2">
+                <a class="actionBack" onclick="backQuestion2()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question4_box">
                 <h2 class="question_title"> 4° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question4.avif"
@@ -178,14 +183,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go5">
+                <a class="actionGo" onclick="goQuestion5()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back3">
+                <a class="actionBack" onclick="backQuestion3()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question5_box">
                 <h2 class="question_title"> 5° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question5.webp"
@@ -218,14 +224,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go6">
+                <a class="actionGo" onclick="goQuestion6()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back4">
+                <a class="actionBack" onclick="backQuestion4()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question6_box">
                 <h2 class="question_title"> 6° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question6.jpg"
@@ -258,14 +265,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go7">
+                <a class="actionGo" onclick="goQuestion7()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back5">
+                <a class="actionBack" onclick="backQuestion5()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question7_box">
                 <h2 class="question_title"> 7° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question7.webp" alt="Série de The Last Of UsI">
@@ -298,14 +306,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go8">
+                <a class="actionGo" onclick="goQuestion8()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back6">
+                <a class="actionBack" onclick="backQuestion6()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question8_box">
                 <h2 class="question_title"> 8° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question8.png"
@@ -339,14 +348,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go9">
+                <a class="actionGo" onclick="goQuestion9()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back7">
+                <a class="actionBack" onclick="backQuestion7()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question9_box">
                 <h2 class="question_title"> 9° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question9.webp"
@@ -380,14 +390,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go10">
+                <a class="actionGo" onclick="goQuestion10()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back8">
+                <a class="actionBack" onclick="backQuestion8()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question10_box">
                 <h2 class="question_title"> 10° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question10.webp"
@@ -420,14 +431,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go11">
+                <a class="actionGo" onclick="goQuestion11()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back9">
+                <a class="actionBack" onclick="backQuestion9()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question11_box">
                 <h2 class="question_title"> 11° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question11.jpg"
@@ -460,14 +472,15 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo" id="go12">
+                <a class="actionGo" onclick="goQuestion12()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
-                <a class="actionBack" id="back10">
+                <a class="actionBack" onclick="backQuestion10()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
             <div class="question_box select-disable" id="question12_box">
                 <h2 class="question_title"> 12° Questão</h2>
                 <img class="question-photos" src="../assets/img/quiz-img/question12.jpg"
@@ -477,35 +490,36 @@
                 </p>
                 <ul class="answer-list">
                     <li>
-                        <label>
+                        <label onclick="markOn12()">
                             <input type="radio" name="answerQ12" id="Q12resp1" value="1">
                             <span>Consegue lembrar do rosto de Joel e sua ultima conversa</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label onclick="markOn12()">
                             <input type="radio" name="answerQ12" id="Q12resp2" value="2">
                             <span>Pensa na Dina e Tommy e como eles sofreram por vingança</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label onclick="markOn12()">
                             <input type="radio" name="answerQ12" id="Q12resp3" value="3">
                             <span>Se põe no lugar de Abby e Lev</span>
                         </label>
                     </li>
                     <li>
-                        <label>
+                        <label onclick="markOn12()">
                             <input type="radio" name="answerQ12" id="Q12resp4" value="4">
                             <span>Repara que sua vingança não tem sentido</span>
                         </label>
                     </li>
                 </ul>
-                <button id="btn_finalizar">Finalizar</button>
-                <a class="actionBack" id="back11">
+                <button id="btn_finalizar" onclick="finish()">Finalizar</button>
+                <a class="actionBack" onclick="backQuestion11()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
+
         </section>
         <div id="info_container" data-aos="fade-up" data-aos-duration="700">
             <text>Tempo respondendo:</text>

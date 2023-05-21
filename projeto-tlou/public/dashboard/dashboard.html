@@ -57,7 +57,7 @@
                             <img class="select-disable" src="../assets/img/icons/User.png" alt="Icone de user"
                                 id="user_img">
                             <div class="li-info">Usuários cadastrados
-                                <span id="qtd_user"></span>
+                                <span id="qtd_user">0</span>
                             </div>
                         </li>
                         <li name="info_block">
@@ -71,7 +71,7 @@
                             <img class="select-disable" src="../assets/img/icons/Heart.png" alt="Icone de coração"
                                 id="heart_img">
                             <div class="li-info">Quizes curtidos
-                                <span id="fav_char">1</span>
+                                <span id="like_all_quiz">0</span>
                             </div>
                         </li>
                     </ul>
@@ -122,9 +122,17 @@
                         </div>
                         <div class="qCard-actions">
                             <a href="./quiz1.html"><button>Responder</button></a>
-                            <button id="btn_like">
-                                <img id="imgLike" src="../assets/img/icons/Heart.png" alt="like">
-                            </button>
+                            <div style="display: flex; justify-content: center; align-items: center; font-size: 18px;">
+                                <span id="qtdCurtida1">?</span>
+                                <button class="btn">
+                                    <svg class="icon" width="25" height="25" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="qCard-empty select-disable">
@@ -145,7 +153,6 @@
 </html>
 <script type="module" src="../js/funcoes.js"></script>
 <script type="module" src="../js/dashboard.js"></script>
-<script src="../js/rankingDash.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>

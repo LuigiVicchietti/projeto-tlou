@@ -1,3 +1,62 @@
+var questionAnswer = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/quiz/listar', {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then((resposta) => {
+        if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((jsonInfo) => {
+                jsonInfo.forEach(quiz => {
+                    i = 0;
+                    console.log(quiz.idQuiz);
+                    if (quiz.idQuiz === 1) {
+                        sessionStorage.ID_QUIZ = quiz.idQuiz;
+                        console.log('Pegou o id correto')
+
+                    } else {
+                        console.log('Não pegou o id correto')
+                    }
+                    i++
+                })
+            })
+        } else {
+            console.log('Erro no .THEN');
+        }
+    })
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(function () {
+        fetch('/question/listar', {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then((resposta) => {
+            if (resposta.ok) {
+                console.log(resposta);
+                resposta.json().then((jsonInfoQuestion) => {
+                    if (sessionStorage.ID_QUIZ == 1) {
+                        console.log('Pegou o id correto')
+                        jsonInfoQuestion.forEach(question => {
+                            questionAnswer.push(question.answer)
+                        });
+
+                    } else {
+                        console.log('Não pegou o id correto')
+                    }
+                })
+            } else {
+                console.log('Erro no .THEN');
+            }
+        })
+    }, 500);
+})
+
 //Declarando cada box de questão
 const btnPlay = document.getElementById("btn_play")
     , startBox = document.getElementById("letstart")
@@ -15,29 +74,7 @@ const btnPlay = document.getElementById("btn_play")
     , decSBox = document.getElementById("question12_box");
 
 //Declarando botões de ida e volta
-const go2 = document.getElementById("go2")
-    , back1 = document.getElementById("back1")
-    , go3 = document.getElementById("go3")
-    , back2 = document.getElementById("back2")
-    , go4 = document.getElementById("go4")
-    , back3 = document.getElementById("back3")
-    , go5 = document.getElementById("go5")
-    , back4 = document.getElementById("back4")
-    , go6 = document.getElementById("go6")
-    , back5 = document.getElementById("back5")
-    , go7 = document.getElementById("go7")
-    , back6 = document.getElementById("back6")
-    , go8 = document.getElementById("go8")
-    , back7 = document.getElementById("back7")
-    , go9 = document.getElementById("go9")
-    , back8 = document.getElementById("back8")
-    , go10 = document.getElementById("go10")
-    , back9 = document.getElementById("back9")
-    , go11 = document.getElementById("go11")
-    , back10 = document.getElementById("back10")
-    , go12 = document.getElementById("go12")
-    , back11 = document.getElementById("back11")
-    , btnFinish = document.getElementById("btn_finalizar");
+const btnFinish = document.getElementById("btn_finalizar");
 
 //Criando o cronômetro
 let hora = 0
@@ -134,7 +171,27 @@ const li_Q1 = document.getElementById("li_Q1")
     , li_Q11 = document.getElementById("li_Q11")
     , li_Q12 = document.getElementById("li_Q12");
 
-//Declarando cada função dos botões
+// var questions = {};
+// var liBoxes = {};
+
+// for(i = 1; i <= 12; i++) {
+//     questions[`questions${i}`] = document.getElementById(`question${i}_box`);
+//     liBoxes[`li${i}`] = document.getElementById(`li_Q${i}`);
+// }
+
+// let G = 0;
+// function goAHead() {
+//     G++
+//     if (document.querySelector(`input[name="answerQ${G}"]:checked`)) {
+//         document.querySelector(`liBoxes.li_Q${G}.value`).classList.add("answered");
+//     }
+
+//     document.querySelector(`questions.question${G}.value`).classList.toggle('show');
+//     setTimeout(function () { document.querySelector(`questions.question${G}.value`).style.display = "none"; }, 410);
+//     setTimeout(function () { document.querySelector(`questions.question${G + 1}.value`).style.display = "flex"; }, 411);
+//     setTimeout(function () { document.querySelector(`questions.question${G + 1}.value`).classList.toggle("show"); }, 450);
+// }
+
 function startQuiz() {
     startCrono();
     startBox.classList.toggle('hide');
@@ -366,36 +423,77 @@ function markOn12() {
     li_Q12.classList.add("answered");
 }
 
+var answerUserArray = [];
+var statusAnswer = [];
+
 function finish() {
     pauseCrono();
+    let tempoTotal = document.getElementById('hour').innerText + `:` + document.getElementById('min').innerText + `:` + document.getElementById('sec').innerText
+
+    for (let i = 1; i <= 12; i++) {
+        answerChoosen = document.querySelector(`input[name="answerQ${i}"]:checked`).value;
+        answerUserArray.push(answerChoosen)
+
+        if (answerUserArray[i - 1] != questionAnswer[i - 1]) {
+            answerStatus = 0
+            statusAnswer.push(answerStatus);
+        } else {
+            answerStatus = 1
+            statusAnswer.push(answerStatus);
+        }
+
+        var answerUser = answerUserArray[i - 1];
+        var status = statusAnswer[i - 1];
+        var time = tempoTotal;
+        var fkQuiz = sessionStorage.ID_QUIZ;
+        var fkQuestion = i;
+        var fkUser = sessionStorage.ID_USUARIO;
+
+        if (answerUser === "" || status === "" || time === "" || fkQuiz === "" || fkQuestion === "" || fkUser === "") {
+            console.log(answerUser);
+            console.log(status);
+            console.log(time);
+            console.log(fkQuiz);
+            console.log(fkQuestion);
+            console.log(fkUser);
+            console.log(`Alguma variável está nula`);
+            return false;
+        } else {
+            console.log(answerUser);
+            console.log(status);
+            console.log(time);
+            console.log(fkQuiz);
+            console.log(fkQuestion);
+            console.log(fkUser);
+
+            console.log(`Resposta validada. Seguindo...`)
+        }
+        fetch("/answer_user/addAnswerUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                answerUserServer: answerUser,
+                statusServer: status,
+                timeServer: time,
+                fkQuizServer: fkQuiz,
+                fkQuestionServer: fkQuestion,
+                fkUserServer: fkUser,
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                console.log("Resposta inserida com sucesso!");
+            } else {
+                throw ("Houve um erro ao responder o quiz!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+    console.log("Quiz realizado com sucesso!");
+    return false
 }
-
-btnPlay.addEventListener('click', startQuiz);
-go2.addEventListener('click', goQuestion2);
-back1.addEventListener('click', backQuestion1);
-go3.addEventListener('click', goQuestion3);
-back2.addEventListener('click', backQuestion2);
-go4.addEventListener('click', goQuestion4);
-back3.addEventListener('click', backQuestion3);
-go5.addEventListener('click', goQuestion5);
-back4.addEventListener('click', backQuestion4);
-go6.addEventListener('click', goQuestion6);
-back5.addEventListener('click', backQuestion5);
-go7.addEventListener('click', goQuestion7);
-back6.addEventListener('click', backQuestion6);
-go8.addEventListener('click', goQuestion8);
-back7.addEventListener('click', backQuestion7);
-go9.addEventListener('click', goQuestion9);
-back8.addEventListener('click', backQuestion8);
-go10.addEventListener('click', goQuestion10);
-back9.addEventListener('click', backQuestion9);
-go11.addEventListener('click', goQuestion11);
-back10.addEventListener('click', backQuestion10);
-go12.addEventListener('click', goQuestion12);
-back11.addEventListener('click', backQuestion11);
-btnFinish.addEventListener('click', finish);
-
-Q12resp1.addEventListener('click', markOn12);
-Q12resp2.addEventListener('click', markOn12);
-Q12resp3.addEventListener('click', markOn12);
-Q12resp4.addEventListener('click', markOn12);
