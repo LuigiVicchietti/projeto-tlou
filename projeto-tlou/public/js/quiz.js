@@ -171,25 +171,25 @@ const li_Q1 = document.getElementById("li_Q1")
     , li_Q11 = document.getElementById("li_Q11")
     , li_Q12 = document.getElementById("li_Q12");
 
-// var questions = {};
-// var liBoxes = {};
+var questionObj = {};
+var liBoxes = {};
 
-// for(i = 1; i <= 12; i++) {
-//     questions[`questions${i}`] = document.getElementById(`question${i}_box`);
-//     liBoxes[`li${i}`] = document.getElementById(`li_Q${i}`);
-// }
+for(i = 1; i <= 12; i++) {
+    questionObj[`question${i}`] = document.getElementById(`question${i}_box`);
+    liBoxes[`li${i}`] = document.getElementById(`li_Q${i}`);
+}
 
 // let G = 0;
 // function goAHead() {
-//     G++
-//     if (document.querySelector(`input[name="answerQ${G}"]:checked`)) {
-//         document.querySelector(`liBoxes.li_Q${G}.value`).classList.add("answered");
+//     if (document.querySelector(`input[name="answerQ${G + 1}"]:checked`)) {
+//         liBoxes[`li${G}`].classList.add("answered");
 //     }
 
-//     document.querySelector(`questions.question${G}.value`).classList.toggle('show');
-//     setTimeout(function () { document.querySelector(`questions.question${G}.value`).style.display = "none"; }, 410);
-//     setTimeout(function () { document.querySelector(`questions.question${G + 1}.value`).style.display = "flex"; }, 411);
-//     setTimeout(function () { document.querySelector(`questions.question${G + 1}.value`).classList.toggle("show"); }, 450);
+//     questionObj[`question${G}`].classList.toggle('show');
+//     setTimeout(function () { questionObj[`question${G}`].style.display = "none"; }, 410);
+//     setTimeout(function () { questionObj[`question${G + 1}`].style.display = "flex"; }, 411);
+//     setTimeout(function () { questionObj[`question${G + 1}`].classList.toggle("show"); }, 450);
+//     G++
 // }
 
 function startQuiz() {

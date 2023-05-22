@@ -2,14 +2,14 @@ import { changeThemeLog, undoChangeThemeLog } from "./funcoes.js";
 
 const theme = document.getElementById("btn_mode");
 
-let darkModeLog = localStorage.getItem("modo");
+let darkMode = localStorage.getItem("modo");
 
-if (darkModeLog === "true") {
+if (darkMode === "true") {
     changeThemeLog(); // set state of darkMode on page load
 }
 theme.addEventListener("click", (e) => {
-    darkModeLog = localStorage.getItem("modo"); // update darkMode when clicked
-    if (darkModeLog === "false") {
+    darkMode = localStorage.getItem("modo"); // update darkMode when clicked
+    if (darkMode === "false") {
         changeThemeLog();
         localStorage.setItem("modo", "true");
         console.log('Dark Mode Ligado');

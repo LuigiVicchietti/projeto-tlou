@@ -1,3 +1,58 @@
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/quiz/listar', {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then((resposta) => {
+        if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((jsonQuizCard) => {
+                jsonQuizCard.forEach(card => {
+                    document.getElementById('content_qSelector').innerHTML += `
+                    <div class="qCard_container">
+                    <div class="qCard select-disable">
+                        <img class="img-quiz" src="../assets/img/img-quiz1.jpg" alt="imagem do quiz">
+                        <div class="quiz-describe">
+                            <h2 id="name_quiz">${card.quizNome}</h2>
+                            <p>${card.descricao}</p>
+                        </div>
+                        <div class="qCard-actions">
+                            <a href="./quiz1.html"><button>Responder</button></a>
+                            <div style="display: flex; justify-content: center; align-items: center; font-size: 18px;">
+                                <span id="qtdCurtida${card.idQuiz}">?</span>
+                                <button class="btn">
+                                    <svg class="icon" width="25" height="25" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                });
+                document.getElementById(`content_qSelector`).innerHTML += `
+                <div class="qCard-empty select-disable">
+                        <img class="soon-warning" src="../assets/img/icons/soon-alert-icon.png" alt="Em breve">
+                        <div class="soon-describe">
+                            <h3>EM BREVE!</h3>
+                            <p>No momento não há mais quizes para responder. Fique atento a novas atualizações, quem
+                                sabe um
+                                novo quiz é feito, não é mesmo?!</p>
+                        </div>
+                    </div>
+                </div>
+                `
+            })
+        } else {
+            console.log('Erro no .THEN');
+        }
+    })
+})
+
 // Daytime message
 const dayTime = document.getElementById("daytime");
 let date = new Date();
@@ -26,7 +81,6 @@ const theme = document.getElementById("btn_mode")
     , divTable = document.getElementById("div_table")
     , divBigChart = document.getElementsByClassName("div-big-chart")
     , divMediumChart = document.getElementsByName("div_medium_chart")
-    , qCardContainer = document.getElementById("qCard_container")
     , imgLike = document.getElementById("imgLike")
     , navbar = document.getElementById("nav")
     , navlist = document.getElementById("nav_list")
@@ -39,7 +93,6 @@ function changeThemeInside() {
     typeMode.classList.toggle("ativo");
     input.classList.toggle("ativo");
     divTable.classList.toggle("ativo");
-    qCardContainer.classList.toggle("ativo");
 
     light.setAttribute("src", "../assets/img/icons/light-white.png");
     userImg.setAttribute("src", "../assets/img/icons/User-white.png");
@@ -56,6 +109,11 @@ function changeThemeInside() {
     for (var i = 0; i < divMediumChart.length; i++) {
         divMediumChart[i].classList.toggle("ativo")
     }
+    setTimeout(function () {
+        for (var i = 0; i < document.querySelectorAll(`.qCard_container`).length; i++) {
+            document.querySelectorAll(`.qCard_container`)[i].classList.toggle("ativo");
+        }
+    }, 100)
 }
 
 function undoChangeThemeInside() {
@@ -65,7 +123,6 @@ function undoChangeThemeInside() {
     typeMode.classList.toggle("ativo");
     input.classList.toggle("ativo");
     divTable.classList.toggle("ativo");
-    qCardContainer.classList.toggle("ativo");
 
     light.setAttribute("src", "../assets/img/icons/light.png");
     userImg.setAttribute("src", "../assets/img/icons/User.png");
@@ -82,6 +139,11 @@ function undoChangeThemeInside() {
     for (var i = 0; i < divMediumChart.length; i++) {
         divMediumChart[i].classList.toggle("ativo")
     }
+    setTimeout(function () {
+        for (var i = 0; i < document.querySelectorAll(`.qCard_container`).length; i++) {
+            document.querySelectorAll(`.qCard_container`)[i].classList.toggle("ativo");
+        }
+    }, 100)
 }
 
 let darkModeInside = localStorage.getItem("modo");
@@ -193,59 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     fetch('/quiz_like/listar', {
-//         method: 'GET',
-//         headers: {
-//             'Content-type': 'application/json'
-//         }
-//     }).then((resposta) => {
-//         if (resposta.ok) {
-//             console.log(resposta);
-//             resposta.json().then((jsonRankDash) => {
-//                 console.log(jsonRankDash);
-//                 jsonRankDash.forEach(row => {
-//                     document.getElementById('content_qSelector').innerHTML += `
-//                     <div id="qCard_container" class="qCard_container">
-//                     <div class="qCard select-disable">
-//                         <img class="img-quiz" src="../assets/img/img-quiz1.jpg" alt="imagem do quiz">
-//                         <div class="quiz-describe">
-//                             <h2 id="name_quiz">${row.idquiz}</h2>
-//                             <p>Pronto para desafiar seus conhecimentos sobre a série de jogos de The Last of Us?! Este
-//                                 quiz contém 12 perguntas com quatro possíveis respostas para cada uma delas, sendo as
-//                                 perguntas baseadas na série e no game de The Last of Us.</p>
-//                         </div>
-//                         <div class="qCard-actions">
-//                             <a href="./quiz1.html"><button>Responder</button></a>
-//                             <div style="display: flex; justify-content: center; align-items: center; font-size: 18px;">
-//                                 <span id="qtdCurtida${row.idquiz}">?</span>
-//                                 <button id="btn_like">
-//                                     <img id="imgLike" src="../assets/img/icons/Heart.png" alt="like">
-//                                 </button>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     `
-//                 });
-//                 document.getElementById(`content_qSelector`).innerHTML += `
-//                 <div class="qCard-empty select-disable">
-//                         <img class="soon-warning" src="../assets/img/icons/soon-alert-icon.png" alt="Em breve">
-//                         <div class="soon-describe">
-//                             <h3>EM BREVE!</h3>
-//                             <p>No momento não há mais quizes para responder. Fique atento a novas atualizações, quem
-//                                 sabe um
-//                                 novo quiz é feito, não é mesmo?!</p>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 `
-//             })
-//         } else {
-//             console.log('Erro no .THEN');
-//         }
-//     })
-// })
-
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/quiz_like/likeByQuiz', {
         method: 'GET',
@@ -275,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(resposta);
             resposta.json().then((jsonLikeQuiz) => {
                 jsonLikeQuiz.forEach(cardLike => {
-                    console.log(cardLike)
                     let spaceLike = document.getElementById(`qtdCurtida${cardLike.idQuiz}`);
                     spaceLike.innerText = `${cardLike.quizLikes}`
                 })
