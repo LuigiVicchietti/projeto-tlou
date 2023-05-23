@@ -15,4 +15,12 @@ router.post("/addAnswerUser", function (req, res) {
     answer_userController.addAnswerUser(req, res);
 })
 
+router.post("/answerPerQuestion", function (req, res) {
+    answer_userController.answerPerQuestion(req, res);
+})
+
+router.post("/statusAnswer", function (req, res) {
+    answer_userController.statusAnswer(req, res);
+})
+
 module.exports = router;

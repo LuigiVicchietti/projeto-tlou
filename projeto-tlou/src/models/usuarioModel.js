@@ -35,7 +35,7 @@ function exibirRankDash() {
     return database.executar(
         `SELECT u.username AS 'NomeUser', COUNT(aU.status) AS 'Pontuacao' FROM user AS u JOIN answer_user AS aU ON aU.fkUser_answer
         WHERE status = 1 AND iduser = fkUser_answer
-        GROUP BY aU.status, u.username ORDER BY u.username ASC;`
+        GROUP BY aU.status, u.username ORDER BY COUNT(aU.status) DESC;`
     );
 }
 

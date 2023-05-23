@@ -64,7 +64,7 @@
                             <img class="select-disable" src="../assets/img/icons/icon-trofeu.png" alt="Icone de troféu"
                                 id="trophy_img">
                             <div class="li-info">Quizes gabaritados
-                                <span id="qtd_quiz_gab">1</span>
+                                <span id="qtd_quiz_gab"></span>
                             </div>
                         </li>
                         <li name="info_block">
@@ -166,49 +166,113 @@
     const ctx2 = document.getElementById('myChart2');
     const ctx3 = document.getElementById('myChart3');
 
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: ['1° questão', '2° questão', '3° questão', '4° questão', '5° questão', '6° questão', '7° questão', '8° questão', '9° questão', '10° questão', '11° questão', '12° questão'],
-            datasets: [{
-                label: 'Quantidade de acertos por cada pergunta do quiz',
-                data: [2, 4, 6, 1, 4, 8, 10, 11, 4, 5, 7, 1],
-                backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(255, 205, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(255, 205, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-                borderColor: ['rgba(255, 99, 132, 0.9)', 'rgba(255, 159, 64, 0.9)', 'rgba(255, 205, 86, 0.9)', 'rgba(75, 192, 192, 0.9)', 'rgba(54, 162, 235, 0.9)', 'rgba(153, 102, 255, 0.9)', 'rgba(255, 99, 132, 0.9)', 'rgba(255, 159, 64, 0.9)', 'rgba(255, 205, 86, 0.9)', 'rgba(75, 192, 192, 0.9)', 'rgba(54, 162, 235, 0.9)', 'rgba(153, 102, 255, 0.9)'],
-                borderWidth: 1
-            }]
-        },
+    var answerPerQuiz = [];
 
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
+    fetch("/answer_user/answerPerQuestion", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fkQuizServer: 1,
+        })
+    }).then(function (resposta) {
+        console.log("resposta: ", resposta);
+        if (resposta.ok) {
+            resposta.json().then((jsonAnswerPerQuestion) => {
+                jsonAnswerPerQuestion.forEach(question => {
+                    answerPerQuiz.push(question.soma);
+                });
+            }).then(() => {
+                loadChart1();
+            })
+        } else {
+            throw ("Houve um erro puxar dados do quiz!");
         }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
     });
 
-    new Chart(ctx2, {
-        type: 'doughnut',
-        data: {
-            labels: ['Acertos', 'Erros'],
-            datasets: [{
-                label: '% de acertos e erros',
-                data: [75, 25],
-                backgroundColor: ['#74C365', '#FF5555'],
-                borderColor: ['#74C365', '#FF5555'],
-                borderWidth: 1
-            }]
-        },
-
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+    function loadChart1() {
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['1° questão', '2° questão', '3° questão', '4° questão', '5° questão', '6° questão', '7° questão', '8° questão', '9° questão', '10° questão', '11° questão', '12° questão'],
+                datasets: [{
+                    label: 'Quantidade de acertos por cada pergunta do quiz',
+                    data: [answerPerQuiz[0], answerPerQuiz[1], answerPerQuiz[2], answerPerQuiz[3], answerPerQuiz[4], answerPerQuiz[5], answerPerQuiz[6], answerPerQuiz[7], answerPerQuiz[8], answerPerQuiz[9], answerPerQuiz[10], answerPerQuiz[11]],
+                    backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(255, 205, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(255, 205, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+                    borderColor: ['rgba(255, 99, 132, 0.9)', 'rgba(255, 159, 64, 0.9)', 'rgba(255, 205, 86, 0.9)', 'rgba(75, 192, 192, 0.9)', 'rgba(54, 162, 235, 0.9)', 'rgba(153, 102, 255, 0.9)', 'rgba(255, 99, 132, 0.9)', 'rgba(255, 159, 64, 0.9)', 'rgba(255, 205, 86, 0.9)', 'rgba(75, 192, 192, 0.9)', 'rgba(54, 162, 235, 0.9)', 'rgba(153, 102, 255, 0.9)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
+        });
+    }
+
+    var statusArray = [];
+
+    fetch("/answer_user/statusAnswer", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fkUserServer: sessionStorage.ID_USUARIO,
+            fkQuizServer: 1,
+        })
+    }).then(function (resposta) {
+        console.log("resposta: ", resposta);
+        if (resposta.ok) {
+            resposta.json().then((jsonStatusAnswer) => {
+                console.log(jsonStatusAnswer[0].acertos)
+                let acertosQuiz = jsonStatusAnswer[0].acertos;
+                let errosQuiz = jsonStatusAnswer[0].erros;
+                let perAcertos = acertosQuiz / (acertosQuiz + errosQuiz) * 100
+                let perErros = errosQuiz / (acertosQuiz + errosQuiz) * 100
+
+                statusArray.push(perAcertos)
+                statusArray.push(perErros)
+            }).then(() => {
+                loadChart2();
+            })
+            console.log("Puxou com sucesso!");
+        } else {
+            throw ("Houve um erro puxar dados do quiz!");
         }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
     });
+
+    function loadChart2() {
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Acertos', 'Erros'],
+                datasets: [{
+                    label: '% de acertos e erros',
+                    data: [statusArray[0], statusArray[1]],
+                    backgroundColor: ['#74C365', '#FF5555'],
+                    borderColor: ['#74C365', '#FF5555'],
+                    borderWidth: 1
+                }]
+            },
+
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
 
     new Chart(ctx3, {
         type: 'bar',

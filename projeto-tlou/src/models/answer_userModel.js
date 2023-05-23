@@ -17,9 +17,29 @@ function addAnswerUser(answerUser, status, time, fkQuiz, fkQuestion, fkUser) {
     return database.executar(instrucao);
 }
 
+function answerPerQuestion(fkQuiz) {
+    var instrucao = `
+    SELECT q.question AS questao, COUNT(status) AS soma FROM answer_user AS auser JOIN question AS q ON auser.fkQuestion = q.idquestion WHERE status = 1 AND fkQuiz_answer = ${fkQuiz} GROUP BY questao;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function statusAnswer(fkUser, fkQuiz) {
+    var instrucao = `
+    SELECT idanswer_user AS tentativa, username, ( (SELECT COUNT(status) FROM answer_user AS auser JOIN user AS user ON auser.fkUser_answer = user.iduser WHERE status = 1 AND iduser = ${fkUser}) ) AS acertos, 
+	( (SELECT COUNT(status) FROM answer_user AS auser JOIN user AS user ON fkUser_answer = user.iduser WHERE status = 0 AND iduser = ${fkUser}) ) AS erros FROM answer_user AS auser 
+		JOIN user AS user ON auser.fkUser_answer = user.iduser WHERE fkQuiz_answer = ${fkQuiz} AND iduser = ${fkUser} AND idanswer_user = (select max(idanswer_user) from answer_user JOIN user AS user ON fkUser_answer = user.iduser WHERE iduser = ${fkQuiz})
+					GROUP BY username, tentativa ORDER BY tentativa DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 
 module.exports = {
+    statusAnswer,
+    answerPerQuestion,
     addAnswerUser,
     listar,
 };
