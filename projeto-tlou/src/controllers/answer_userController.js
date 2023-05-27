@@ -116,7 +116,35 @@ function statusAnswer(req, res) {
     }
 }
 
+function showLastStatus(req, res) {
+    var fkUser = req.body.fkUserServer;
+    var fkQuiz = req.body.fkQuizServer;
+
+    if (fkUser == undefined) {
+        res.status(400).send("A FK User está undefined!");
+    } else if(fkQuiz == undefined) {
+        res.status(400).send("A FK Quiz está undefined!");
+    } else {
+        answer_userModel.showLastStatus(fkUser, fkQuiz)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
+    showLastStatus,
     statusAnswer,
     answerPerQuestion,
     addAnswerUser,

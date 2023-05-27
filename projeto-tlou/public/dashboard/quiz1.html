@@ -14,7 +14,7 @@
 
 <body>
     <main>
-        <section id="content_question" data-aos="fade-right" data-aos-duration="1000">
+        <section class="content-left" id="content_question" data-aos="fade-right" data-aos-duration="1000">
             <img class="firefly select-disable" src="https://static.tvtropes.org/pmwiki/pub/images/fireflies.png"
                 alt="Logo firefly">
 
@@ -29,7 +29,8 @@
                     <li>Você também conseguirá navegar entre as questões.</li>
                     <li>Haverá um placar com sua pontuação e stats no final!</li>
                 </ul>
-                <button class="select-disable" id="btn_play" onclick="startQuiz()">começar</button>
+                <button style="align-self: center;" class="btn-shine select-disable" id="btn_play"
+                    onclick="startQuiz()">começar</button>
             </div>
 
             <div class="question_box select-disable" id="question1_box">
@@ -64,7 +65,7 @@
                         </label>
                     </li>
                 </ul>
-                <a class="actionGo"  onclick="goAHead()">
+                <a class="actionGo" onclick="goAHead()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownRight.png"
                         alt="Avançar">
                 </a>
@@ -514,12 +515,31 @@
                         </label>
                     </li>
                 </ul>
-                <button id="btn_finalizar" onclick="finish()">Finalizar</button>
+                <button class="btn-shine" id="btn_finalizar" onclick="finish()">Finalizar</button>
                 <a class="actionBack" onclick="goBack()">
                     <img class="img-action select-disable" src="../assets/img/icons/ArrowBendDownLeft.png" alt="Voltar">
                 </a>
             </div>
-
+        </section>
+        <section class="content-left" id="result_content" data-aos="fade-down" data-aos-duration="1500">
+            <img class="firefly select-disable" src="https://static.tvtropes.org/pmwiki/pub/images/fireflies.png"
+                alt="Logo firefly">
+            <h2 class="question_title select-disable">Resultado do Quiz!</h2>
+            <div class="result-box" id="result_box">
+                <!-- <img style="width: 30vw;" class="question-photos select-disable"
+                    src="https://media.tenor.com/qnMzDiqQOUgAAAAC/last-of-us2-last-of-us.gif" alt="Ellie Feliz">
+                <div>
+                    <span class="gold-gradient select-disable" id="circle_result">
+                        <span><text style="color: #DAA250;" name="qtdAcertos">12</text> / 12</span>
+                    </span>
+                    <h3>Você acertou <text style="color: #DAA250;">12</text> questões!</h3>
+                    <p id="text_result">Boa! Você acertou <text style="color: #DAA250;"
+                            name="qtdAcertos">12</text>
+                        questões do quiz!
+                        Você com certeza gosta da série e manja de algumas coisas desse universo. Quem sabe um pouco
+                        mais de introspecção nesse universo não te faz se apaixonar mais pela série?!</p>
+                </div> -->
+            </div>
         </section>
         <div id="info_container" data-aos="fade-up" data-aos-duration="700">
             <text>Tempo respondendo:</text>
@@ -527,7 +547,8 @@
                 <span id="hour">00</span>:<span id="min">00</span>:<span id="sec">00</span>
             </h2>
             <div class="div_fantasma">
-                <img class="arrow-down select-disable" src="../assets/img/icons/seta.png" alt="Sinalizador de mais itens">
+                <img class="arrow-down select-disable" src="../assets/img/icons/seta.png"
+                    alt="Sinalizador de mais itens">
                 <ol class="select-disable" id="questions_container">
                     <li id="li_Q1">
                         <span>1° QUESTÃO</span>

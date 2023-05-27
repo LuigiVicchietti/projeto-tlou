@@ -36,8 +36,20 @@ function statusAnswer(fkUser, fkQuiz) {
     return database.executar(instrucao);
 }
 
+function showLastStatus(fkUser, fkQuiz) {
+    var instrucao = `
+    SELECT idanswer_user, username, COUNT( (SELECT COUNT(status) FROM answer_user AS auser JOIN user AS user ON auser.fkUser_answer = user.iduser WHERE status != 0 AND iduser = ${fkUser}) ) AS acertos, 
+    timeSend AS tempo FROM answer_user JOIN user ON fkUser_answer = iduser 
+	    WHERE iduser = ${fkUser} AND status != 0 AND fkQuiz_answer = ${fkQuiz} AND 
+		    (SELECT COUNT(status) FROM answer_user AS auser JOIN user AS user ON auser.fkUser_answer = user.iduser WHERE status = 1 AND iduser = ${fkUser})
+			    GROUP BY idanswer_user, username, timeSend ORDER BY idanswer_user DESC LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 module.exports = {
+    showLastStatus,
     statusAnswer,
     answerPerQuestion,
     addAnswerUser,

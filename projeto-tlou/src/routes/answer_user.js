@@ -23,4 +23,8 @@ router.post("/statusAnswer", function (req, res) {
     answer_userController.statusAnswer(req, res);
 })
 
+router.post("/showLastStatus", function (req, res) {
+    answer_userController.showLastStatus(req, res);
+})
+
 module.exports = router;

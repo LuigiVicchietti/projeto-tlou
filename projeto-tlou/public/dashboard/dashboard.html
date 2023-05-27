@@ -32,7 +32,7 @@
                     </a>
                 </li>
             </ul>
-            <a href="../login.html">
+            <a onclick="limparSessao()" href="../login.html">
                 <img class="img-sair select-disable" src="../assets/img/icons/exit.png" alt="Sair">
                 <span class="select-disable">Sair</span>
             </a>
@@ -231,7 +231,6 @@
         console.log("resposta: ", resposta);
         if (resposta.ok) {
             resposta.json().then((jsonStatusAnswer) => {
-                console.log(jsonStatusAnswer[0].acertos)
                 let acertosQuiz = jsonStatusAnswer[0].acertos;
                 let errosQuiz = jsonStatusAnswer[0].erros;
                 let perAcertos = acertosQuiz / (acertosQuiz + errosQuiz) * 100
@@ -242,7 +241,6 @@
             }).then(() => {
                 loadChart2();
             })
-            console.log("Puxou com sucesso!");
         } else {
             throw ("Houve um erro puxar dados do quiz!");
         }
@@ -274,25 +272,62 @@
         });
     }
 
-    new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: ['Acertos', 'Tempo gasto'],
-            datasets: [{
-                label: 'Acertos em relação ao tempo gasto (min)',
-                data: [12, 3.20],
-                backgroundColor: ['rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.8)'],
-                borderColor: ['rgba(153, 102, 255, 0.9)', 'rgba(255, 159, 64, 0.4)'],
-                borderWidth: 1
-            }]
-        },
+    var lastAnswer = [];
 
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch("/answer_user/showLastStatus", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkUserServer: sessionStorage.ID_USUARIO,
+                fkQuizServer: 1,
+            })
+        }).then(function (resposta) {
+            console.log("resposta: ", resposta);
+            if (resposta.ok) {
+                resposta.json().then((jsonLastStatus) => {
+                    let acertosQuiz = jsonLastStatus[0].acertos;
+                    let timeQuiz = jsonLastStatus[0].tempo;
+
+                    var timeConvert = timeQuiz.replace(':00', '').replace(':', '.');
+                    Number(timeConvert);
+                    
+                    lastAnswer.push(acertosQuiz)
+                    lastAnswer.push(timeConvert)
+                }).then(() => {
+                    loadChart3();
+                })
+            } else {
+                throw ("Houve um erro puxar dados do quiz!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    })
+
+    function loadChart3() {
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Acertos', 'Tempo gasto'],
+                datasets: [{
+                    label: 'Acertos em relação ao tempo gasto (min)',
+                    data: [lastAnswer[0], lastAnswer[1]],
+                    backgroundColor: ['rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.8)'],
+                    borderColor: ['rgba(153, 102, 255, 0.9)', 'rgba(255, 159, 64, 0.4)'],
+                    borderWidth: 1
+                }]
+            },
+
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
+    }
 </script>

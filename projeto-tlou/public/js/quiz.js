@@ -59,9 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const btnPlay = document.getElementById("btn_play")
     , startBox = document.getElementById("letstart")
-    , btnFinish = document.getElementById("btn_finalizar");
+    , btnFinish = document.getElementById("btn_finalizar")
+    , section1 = document.getElementById("content_question")
+    , section2 = document.getElementById("result_content");
 
-//Criando o cronômetro
 let hora = 0
     , minuto = 0
     , seg = 0;
@@ -204,5 +205,72 @@ function finish() {
         });
     }
     console.log("Quiz realizado com sucesso!");
+
+    let correctAnswers = 0;
+    for (let i = 0; i < statusAnswer.length; i++) {
+        correctAnswers += statusAnswer[i];
+    }
+
+    if (correctAnswers == 12) {
+        result_box.innerHTML = `
+            <img style="width: 30vw;" class="question-photos select-disable"
+                src="https://media.tenor.com/qnMzDiqQOUgAAAAC/last-of-us2-last-of-us.gif" alt="Ellie Feliz">
+            <div>
+                <span class="gold-gradient select-disable" id="circle_result">
+                <span><text style="color: #DAA250;" name="qtdAcertos">${correctAnswers}</text> / 12</span></span>
+                <h3>Você acertou <text style="color: #DAA250;">${correctAnswers}</text> questões!</h3>
+                <p id="text_result">Boa! Você acertou <text style="color: #DAA250;"
+                    name="qtdAcertos">${correctAnswers}</text>
+                    questões do quiz!
+                    Você com certeza gosta da série e manja de algumas coisas desse universo. Quem sabe um pouco
+                    mais de introspecção nesse universo não te faz se apaixonar mais pela série?!</p>
+            </div>
+        `
+    } else if (correctAnswers > 9) {
+        result_box.innerHTML = `
+            <img style="width: 30vw;" class="question-photos select-disable"
+                src="https://media.giphy.com/media/VdhTYle3b9a6jtO7FJ/giphy.gif" alt="Ellie Feliz">
+            <div>
+                <span class="green-gradient select-disable" id="circle_result"><span><text style="color: #74C365;" name="qtdAcertos">${correctAnswers}</text> / 12</span></span>
+                <h3>Você acertou <text style="color: #74C365;">${correctAnswers}</text> questões!</h3>
+                <p id="text_result">Caramba! Você acertou <text style="color: #74C365;" name="qtdAcertos">${correctAnswers}</text>
+                    questões do quiz!
+                    Você entende de muita coisa dessa série! Com certeza deve acompanhar a série e gosta muito desse
+                    universo. Parabéns!</p>
+            </div>
+        `
+    } else if (correctAnswers > 4 && correctAnswers <= 9) {
+        result_box.innerHTML = `
+        <img style="width: 30vw;" class="question-photos select-disable"
+              src="https://media.giphy.com/media/Sw6fiilaRDWz7KW5x5/giphy.gif" alt="Ellie Feliz">
+        <div>
+            <span class="blue-gradient select-disable" id="circle_result">
+            <span><text style="color: cornflowerblue;" name="qtdAcertos">${correctAnswers}</text> / 12</span></span>
+            <h3>Você acertou <text style="color: cornflowerblue;">${correctAnswers}</text> questões!</h3>
+                <p id="text_result">Boa! Você acertou <text style="color: cornflowerblue;"
+                    name="qtdAcertos">${correctAnswers}</text>
+                    questões do quiz!
+                    Você com certeza gosta da série e manja de algumas coisas desse universo. Quem sabe um pouco
+                    mais de introspecção nesse universo não te faz se apaixonar mais pela série?!</p>
+        </div>
+        `
+    } else {
+        result_box.innerHTML = `
+            <img style="width: 30vw;" class="question-photos select-disable"
+                src="https://media.giphy.com/media/elK9EJTjefNmfP8WKj/giphy.gif" alt="Ellie triste">
+            <div>
+                <span class="red-gradient select-disable" id="circle_result">
+                    <span><text style="color: #FF5555;" name="qtdAcertos">${correctAnswers}</text> / 12</span>                </span>
+                    <h3>Você acertou <text style="color: #FF5555;">${correctAnswers}</text> questões!</h3>
+                    <p id="text_result">Putz! Você acertou <text style="color: #FF5555;" name="qtdAcertos">${correctAnswers}</text> questões do quiz!
+                        Talvez você não acompanhe muito o universo da série ou deu um branco safado! Na proxima vez você arrebenta!</p>
+            </div>
+        `
+    }
+
+    section1.classList.toggle('hide');
+    setTimeout(function () { section1.style.display = "none"; }, 410);
+    setTimeout(function () { section2.style.display = "flex"; }, 411);
+    setTimeout(function () { section2.classList.toggle("show"); }, 450);
     return false
 }
