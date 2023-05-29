@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }).then((resposta) => {
         if (resposta.ok) {
-            console.log(resposta);
             resposta.json().then((jsonQuizCard) => {
                 jsonQuizCard.forEach(card => {
                     document.getElementById('content_qSelector').innerHTML += `
@@ -20,15 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="qCard-actions">
                             <a href="./quiz1.html"><button>Responder</button></a>
                             <div style="display: flex; justify-content: center; align-items: center; font-size: 18px;">
-                                <span id="qtdCurtida${card.idQuiz}">?</span>
-                                <button class="btn">
-                                    <svg class="icon" width="25" height="25" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z">
-                                        </path>
-                                    </svg>
-                                </button>
+                                <span id="qtdCurtida${card.idQuiz}">0</span>
+                                <span id="btn_curtida${card.idQuiz}">
+                                    
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -46,14 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 `
-            })
+            }).then(() => {
+                gerarBtn();
+            });
         } else {
             console.log('Erro no .THEN');
         }
     })
 })
 
-// Daytime message
 const dayTime = document.getElementById("daytime");
 let date = new Date();
 let hour = date.getHours();
@@ -68,7 +63,6 @@ if (hour >= 6 && hour < 11) {
     }
 }
 
-// Dark mode
 const theme = document.getElementById("btn_mode")
     , globalContainer = document.getElementById("global_container")
     , input = document.getElementById("input_search")
@@ -149,10 +143,10 @@ function undoChangeThemeInside() {
 let darkModeInside = localStorage.getItem("modo");
 
 if (darkModeInside === "true") {
-    changeThemeInside(); // set state of darkMode on page load
+    changeThemeInside();
 }
 theme.addEventListener("click", (e) => {
-    darkModeInside = localStorage.getItem("modo"); // update darkMode when clicked
+    darkModeInside = localStorage.getItem("modo");
     if (darkModeInside === "false") {
         changeThemeInside();
         localStorage.setItem("modo", "true");
@@ -217,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }).then((resposta) => {
         if (resposta.ok) {
-            console.log(resposta);
             resposta.json().then((jsonRankDash) => {
                 let position = 1;
                 jsonRankDash.forEach(row => {
@@ -245,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }).then((resposta) => {
         if (resposta.ok) {
-            console.log(resposta);
             resposta.json().then((jsonQtdUser) => {
                 document.getElementById('qtd_user').innerText = `${jsonQtdUser[0].idUser}`
             })
@@ -263,7 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }).then((resposta) => {
         if (resposta.ok) {
-            console.log(resposta);
             resposta.json().then((jsonLikeAllQuiz) => {
                 document.getElementById('like_all_quiz').innerText = `${jsonLikeAllQuiz[0].qtdTotalLike}`
             })
@@ -281,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }).then((resposta) => {
         if (resposta.ok) {
-            console.log(resposta);
             resposta.json().then((jsonLikeQuiz) => {
                 jsonLikeQuiz.forEach(cardLike => {
                     let spaceLike = document.getElementById(`qtdCurtida${cardLike.idQuiz}`);
@@ -293,6 +283,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 })
+
+async function gerarBtn() {
+    await fetch('/quiz_like/showQuizUserLike', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            fkUserServer: sessionStorage.ID_USUARIO,
+        })
+    }).then((resposta) => {
+        if (resposta.ok) {
+            resposta.json().then((jsonShowQuizUserLike) => {
+                console.log(jsonShowQuizUserLike)
+                jsonShowQuizUserLike.forEach(row => {
+                    let btn_box = document.getElementById(`btn_curtida${row.idquiz}`);
+                    if (row.liked == 0) {
+                        btn_box.innerHTML = `
+                            <button class="btn" onclick="likeQuiz(this)">
+                                <svg class="icon" width="25" height="25" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                    d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" fill="#fd1853">
+                                    </path>
+                                </svg>
+                            </button>
+                        `
+                    } else {
+                        btn_box.innerHTML = `
+                            <button class="btn liked" onclick="likeQuiz(this)">
+                                <svg class="icon" width="25" height="25" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                    d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" fill="#fd1853">
+                                    </path>
+                                </svg>
+                            </button>
+                        `
+                    }
+                })
+            })
+        } else {
+            console.log('Erro no .THEN');
+        }
+    })
+}
 
 aDash.addEventListener('click', changePage);
 aQSelec.addEventListener('click', changePage);

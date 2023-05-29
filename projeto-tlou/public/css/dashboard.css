@@ -727,32 +727,59 @@ section {
     border: none;
     background-color: transparent;
     position: relative;
-  }
-  
-  .btn:hover > .icon {
+}
+
+.btn path {
+    fill: #0C0C0C;
+}
+
+.btn:hover>.icon {
     transform: scale(1.06);
     cursor: pointer;
     transition: .2s ease-in-out;
-  }
-  
-  .btn:focus > .icon {
+}
+
+.btn:focus>.icon {
     fill: #fd1853;
     animation: grosseur .2s ease-in;
-  }
-  
-  @keyframes grosseur {
+}
+
+@keyframes grosseur {
     0% {
-      width: 35px;
-      height: 35px;
-      fill: #fd1853;
+        width: 35px;
+        height: 35px;
+        fill: #fd1853;
     }
-  
+
     100% {
-      width: 35px;
-      height: 35px;
-      fill: #fd1853;
+        width: 35px;
+        height: 35px;
+        fill: #fd1853;
     }
-  }
+}
+
+.btn.liked path {
+    fill: #fd1853;
+}
+
+.btn.liked:focus>.icon {
+    fill: #0C0C0C;
+    animation: grosseurLiked .2s ease-in;
+}
+
+@keyframes grosseurLiked {
+    0% {
+        width: 35px;
+        height: 35px;
+        fill: #0C0C0C;
+    }
+
+    100% {
+        width: 35px;
+        height: 35px;
+        fill: #0C0C0C;
+    }
+}
 
 .qCard-actions img {
     max-width: 25px;

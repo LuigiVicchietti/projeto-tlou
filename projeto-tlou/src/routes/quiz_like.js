@@ -19,4 +19,8 @@ router.get("/likeByQuizId", function (req, res) {
     quiz_likeController.likeByQuizId(req, res);
 });
 
+router.post("/showQuizUserLike", function (req, res) {
+    quiz_likeController.showQuizUserLike(req, res);
+});
+
 module.exports = router;

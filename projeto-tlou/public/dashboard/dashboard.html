@@ -124,14 +124,16 @@
                             <a href="./quiz1.html"><button>Responder</button></a>
                             <div style="display: flex; justify-content: center; align-items: center; font-size: 18px;">
                                 <span id="qtdCurtida1">?</span>
-                                <button class="btn">
-                                    <svg class="icon" width="25" height="25" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z">
-                                        </path>
-                                    </svg>
-                                </button>
+                                <span id="btn_curtida">
+                                    <button class="btn" id="btn_like">
+                                        <svg class="icon" width="25" height="25" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path id="heartPath"
+                                                d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" fill="#fd1853">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -152,6 +154,12 @@
 
 </html>
 <script type="module" src="../js/funcoes.js"></script>
+<script>
+    function likeQuiz(quiz) {
+        quiz.classList.toggle('liked');
+        console.log(quiz)
+    }
+</script>
 <script type="module" src="../js/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -177,7 +185,6 @@
             fkQuizServer: 1,
         })
     }).then(function (resposta) {
-        console.log("resposta: ", resposta);
         if (resposta.ok) {
             resposta.json().then((jsonAnswerPerQuestion) => {
                 jsonAnswerPerQuestion.forEach(question => {
@@ -228,7 +235,6 @@
             fkQuizServer: 1,
         })
     }).then(function (resposta) {
-        console.log("resposta: ", resposta);
         if (resposta.ok) {
             resposta.json().then((jsonStatusAnswer) => {
                 let acertosQuiz = jsonStatusAnswer[0].acertos;
@@ -285,7 +291,6 @@
                 fkQuizServer: 1,
             })
         }).then(function (resposta) {
-            console.log("resposta: ", resposta);
             if (resposta.ok) {
                 resposta.json().then((jsonLastStatus) => {
                     let acertosQuiz = jsonLastStatus[0].acertos;
@@ -293,7 +298,7 @@
 
                     var timeConvert = timeQuiz.replace(':00', '').replace(':', '.');
                     Number(timeConvert);
-                    
+
                     lastAnswer.push(acertosQuiz)
                     lastAnswer.push(timeConvert)
                 }).then(() => {

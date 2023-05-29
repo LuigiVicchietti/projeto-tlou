@@ -2,6 +2,10 @@ const { response } = require("express");
 var answer_userModel = require("../models/answer_userModel");
 
 var sessoes = [];
+var numTentativas = [];
+if(numTentativas.length == 12) {
+    numTentativas = [];
+}
 
 function testar(req, res) {
     console.log("ENTRAMOS NA answer_userController");
@@ -25,7 +29,7 @@ function listar(req, res) {
         );
 }
 
-function addAnswerUser(req, res) {
+async function addAnswerUser(req, res) {
     var answerUser = req.body.answerUserServer;
     var status = req.body.statusServer;
     var time = req.body.timeServer;
@@ -46,22 +50,31 @@ function addAnswerUser(req, res) {
     } else if (fkUser == undefined) {
         res.status(400).send("O ID do usuário está undefined!");
     } else {
-
-        answer_userModel.addAnswerUser(answerUser, status, time, fkQuiz, fkQuestion, fkUser)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+        let tentativaVar = 1;
+        await answer_userModel.showTry(fkUser).then((resposta) => {
+            if (resposta.length > 0) {
+                tentativaVar += Number(resposta[0].tentativa)
+                numTentativas.push(tentativaVar)
+                console.log(resposta[0].tentativa)
+            }
+        }).then(async function () {
+            console.log(tentativaVar)
+            await answer_userModel.addAnswerUser(numTentativas[0], answerUser, status, time, fkQuiz, fkQuestion, fkUser)
+                .then(
+                    function (resultado) {
+                        res.json(resultado);
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao realizar o cadastro! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage);
+                    }
+                );
+        })
     }
 }
 
@@ -95,7 +108,7 @@ function statusAnswer(req, res) {
 
     if (fkUser == undefined) {
         res.status(400).send("A FK User está undefined!");
-    } else if(fkQuiz == undefined) {
+    } else if (fkQuiz == undefined) {
         res.status(400).send("A FK Quiz está undefined!");
     } else {
         answer_userModel.statusAnswer(fkUser, fkQuiz)
@@ -122,7 +135,7 @@ function showLastStatus(req, res) {
 
     if (fkUser == undefined) {
         res.status(400).send("A FK User está undefined!");
-    } else if(fkQuiz == undefined) {
+    } else if (fkQuiz == undefined) {
         res.status(400).send("A FK Quiz está undefined!");
     } else {
         answer_userModel.showLastStatus(fkUser, fkQuiz)

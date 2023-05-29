@@ -9,9 +9,9 @@ function listar() {
     return database.executar(instrucao);
 }
 
-function addAnswerUser(answerUser, status, time, fkQuiz, fkQuestion, fkUser) {
+function addAnswerUser(tentativa, answerUser, status, time, fkQuiz, fkQuestion, fkUser) {
     var instrucao = `
-        INSERT INTO answer_user (idanswer_user, answer, status, timeSend, fkQuiz_answer, fkQuestion, fkUser_answer) VALUES (1, ${answerUser}, ${status}, '${time}', ${fkQuiz}, ${fkQuestion}, ${fkUser});
+        INSERT INTO answer_user (idanswer_user, answer, status, timeSend, fkQuiz_answer, fkQuestion, fkUser_answer) VALUES (${tentativa}, ${answerUser}, ${status}, '${time}', ${fkQuiz}, ${fkQuestion}, ${fkUser});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -48,7 +48,16 @@ function showLastStatus(fkUser, fkQuiz) {
     return database.executar(instrucao);
 }
 
+function showTry(fkUser) {
+    var instrucao = `
+    select max(idanswer_user) AS tentativa from answer_user where fkUser_answer = ${fkUser};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
+    showTry,
     showLastStatus,
     statusAnswer,
     answerPerQuestion,

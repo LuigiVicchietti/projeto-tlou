@@ -149,7 +149,7 @@ function markOn12() {
 var answerUserArray = [];
 var statusAnswer = [];
 
-function finish() {
+async function finish() {
     pauseCrono();
     let tempoTotal = document.getElementById('hour').innerText + `:` + document.getElementById('min').innerText + `:` + document.getElementById('sec').innerText
 
@@ -178,7 +178,7 @@ function finish() {
         } else {
             console.log(`Resposta validada. Seguindo...`)
         }
-        fetch("/answer_user/addAnswerUser", {
+        await fetch("/answer_user/addAnswerUser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -192,9 +192,7 @@ function finish() {
                 fkUserServer: fkUser,
             })
         }).then(function (resposta) {
-
             console.log("resposta: ", resposta);
-
             if (resposta.ok) {
                 console.log("Resposta inserida com sucesso!");
             } else {

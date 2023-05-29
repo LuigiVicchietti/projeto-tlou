@@ -42,7 +42,30 @@ function likeByQuiz(req, res) {
 }
 
 function likeByQuizId(req, res) {
-        quiz_likeModel.likeByQuizId()
+    quiz_likeModel.likeByQuizId()
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function showQuizUserLike(req, res) {
+    var fkUser = req.body.fkUserServer;
+    
+    if (fkUser == undefined) {
+        res.status(400).send("A FK user está undefined!");
+    } else {
+        quiz_likeModel.showQuizUserLike(fkUser)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -58,10 +81,12 @@ function likeByQuizId(req, res) {
                 }
             );
     }
+}
 
 module.exports = {
     listar,
     likeByQuiz,
     likeByQuizId,
+    showQuizUserLike,
     testar
 }
