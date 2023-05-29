@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('content_qSelector').innerHTML += `
                     <div class="qCard_container">
                     <div class="qCard select-disable">
-                        <img class="img-quiz" src="../assets/img/img-quiz1.jpg" alt="imagem do quiz">
+                        <img class="img-quiz" src="${card.foto}" alt="imagem do quiz">
                         <div class="quiz-describe">
                             <h2 id="name_quiz">${card.quizNome}</h2>
                             <p>${card.descricao}</p>
@@ -107,7 +107,7 @@ function changeThemeInside() {
         for (var i = 0; i < document.querySelectorAll(`.qCard_container`).length; i++) {
             document.querySelectorAll(`.qCard_container`)[i].classList.toggle("ativo");
         }
-    }, 100)
+    }, 400)
 }
 
 function undoChangeThemeInside() {
@@ -248,6 +248,23 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
+    fetch('/usuarios/whoGabaritou', {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then((resposta) => {
+        if (resposta.ok) {
+            resposta.json().then((jsonWhoGabaritou) => {
+                document.getElementById('qtd_quiz_gab').innerText = `${jsonWhoGabaritou[0].QtdGabaritou}`
+            })
+        } else {
+            console.log('Erro no .THEN');
+        }
+    })
+})
+
+document.addEventListener('DOMContentLoaded', () => {
     fetch('/quiz_like/likeByQuiz', {
         method: 'GET',
         headers: {
@@ -264,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
     fetch('/quiz_like/likeByQuizId', {
         method: 'GET',
         headers: {
@@ -285,23 +302,19 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 async function gerarBtn() {
-    await fetch('/quiz_like/showQuizUserLike', {
-        method: 'POST',
+    await fetch(`/quiz_like/showQuizUserLike/${sessionStorage.ID_USUARIO}`, {
+        method: 'GET',
         headers: {
             'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            fkUserServer: sessionStorage.ID_USUARIO,
-        })
+        }
     }).then((resposta) => {
         if (resposta.ok) {
             resposta.json().then((jsonShowQuizUserLike) => {
-                console.log(jsonShowQuizUserLike)
                 jsonShowQuizUserLike.forEach(row => {
                     let btn_box = document.getElementById(`btn_curtida${row.idquiz}`);
                     if (row.liked == 0) {
                         btn_box.innerHTML = `
-                            <button class="btn" onclick="likeQuiz(this)">
+                            <button referenceQuiz='${row.idquiz}' class="btn" onclick="likeQuiz(this)">
                                 <svg class="icon" width="25" height="25" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                     d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" fill="#fd1853">
@@ -311,7 +324,7 @@ async function gerarBtn() {
                         `
                     } else {
                         btn_box.innerHTML = `
-                            <button class="btn liked" onclick="likeQuiz(this)">
+                            <button referenceQuiz='${row.idquiz}' class="btn liked" onclick="likeQuiz(this)">
                                 <svg class="icon" width="25" height="25" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                     <path

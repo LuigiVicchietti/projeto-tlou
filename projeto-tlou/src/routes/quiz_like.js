@@ -19,8 +19,16 @@ router.get("/likeByQuizId", function (req, res) {
     quiz_likeController.likeByQuizId(req, res);
 });
 
-router.post("/showQuizUserLike", function (req, res) {
+router.get("/showQuizUserLike/:fkUser", function (req, res) {
     quiz_likeController.showQuizUserLike(req, res);
+});
+
+router.post("/insertUserLike", function (req, res) {
+    quiz_likeController.insertUserLike(req, res);
+});
+
+router.delete("/deleteUserLike/:fkUser/:fkQuiz", function (req, res) {
+    quiz_likeController.deleteUserLike(req, res);
 });
 
 module.exports = router;

@@ -1,3 +1,7 @@
+<div align="center">
+   <img align="center" src="https://images.hdqwalls.com/download/ellie-the-last-of-us-4k-yl-2560x1080.jpg" width="1000px">
+</div>
+
 # Site Individual - The Last of Us 🐾
 
 Este site é baseado no tema The Last of Us, uma série de jogos feitas pela Naughty Dog. Tema escolhido por mim para dissertar/apresentar sobre um dos meus jogos favoritos e para treinar minhas habilidades de programação front-end e back-end.

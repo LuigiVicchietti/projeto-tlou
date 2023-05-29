@@ -154,13 +154,75 @@
 
 </html>
 <script type="module" src="../js/funcoes.js"></script>
+<script type="module" src="../js/dashboard.js"></script>
 <script>
-    function likeQuiz(quiz) {
-        quiz.classList.toggle('liked');
-        console.log(quiz)
+    function showLikesFromQuiz() {
+        fetch('/quiz_like/likeByQuizId', {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then((resposta) => {
+            if (resposta.ok) {
+                resposta.json().then((jsonLikeQuiz) => {
+                    jsonLikeQuiz.forEach(cardLike => {
+                        let spaceLike = document.getElementById(`qtdCurtida${cardLike.idQuiz}`);
+                        spaceLike.innerText = `${cardLike.quizLikes}`
+                    })
+                })
+            } else {
+                console.log('Erro no .THEN');
+            }
+        })
+    }
+
+    async function likeQuiz(quiz) {
+        let idQuiz = quiz.getAttribute(`referenceQuiz`);
+        if (quiz.classList.contains(`liked`)) {
+            fetch(`/quiz_like/deleteUserLike/${sessionStorage.ID_USUARIO}/${idQuiz}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    console.log(`Usuário ${sessionStorage.NOME_USUARIO} descurtiu o quiz!`)
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar descurtir o quiz! Código da resposta: " + resposta.status);
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            }).then(() => {
+                showLikesFromQuiz();
+            });
+            quiz.classList.remove('liked');
+        } else {
+            fetch("/quiz_like/insertUserLike", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    fkUserServer: sessionStorage.ID_USUARIO,
+                    fkQuizServer: idQuiz,
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    console.log(`Usuário ${sessionStorage.NOME_USUARIO} curtiu o quiz!`);
+                } else {
+                    throw ("Houve um erro ao curtir o quiz!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            }).then(() => {
+                showLikesFromQuiz();
+            });
+            quiz.classList.add('liked');
+        }
     }
 </script>
-<script type="module" src="../js/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>

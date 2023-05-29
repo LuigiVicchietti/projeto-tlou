@@ -60,7 +60,7 @@ function likeByQuizId(req, res) {
 }
 
 function showQuizUserLike(req, res) {
-    var fkUser = req.body.fkUserServer;
+    var fkUser = req.params.fkUser;
     
     if (fkUser == undefined) {
         res.status(400).send("A FK user está undefined!");
@@ -83,10 +83,58 @@ function showQuizUserLike(req, res) {
     }
 }
 
+function insertUserLike(req, res) {
+    var fkUser = req.body.fkUserServer;
+    var fkQuiz = req.body.fkQuizServer;
+    
+    if (fkUser == undefined) {
+        res.status(400).send("A FK user está undefined!");
+    } else if(fkQuiz == undefined) {
+        res.status(400).send("A FK quiz está undefined!");
+    } else {
+        quiz_likeModel.insertUserLike(fkUser, fkQuiz)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function deleteUserLike(req, res) {
+    var fkUser = req.params.fkUser;
+    var fkQuiz = req.params.fkQuiz;
+
+    quiz_likeModel.deleteUserLike(fkUser, fkQuiz)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     listar,
     likeByQuiz,
     likeByQuizId,
     showQuizUserLike,
+    insertUserLike,
+    deleteUserLike,
     testar
 }

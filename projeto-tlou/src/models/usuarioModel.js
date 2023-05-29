@@ -45,10 +45,20 @@ function exibirUser() {
     );
 }
 
+function whoGabaritou() {
+    return database.executar(
+        `select count(distinct user.username) as QtdGabaritou from user join 
+        (select iduser, username, sum(status) as somatorio from user JOIN answer_user ON iduser = fkUser_answer group by username, iduser) as gabaritou
+        on user.iduser = gabaritou.iduser
+        where gabaritou.somatorio = 12;`
+    );
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
     exibirRankDash,
     exibirUser,
+    whoGabaritou
 };

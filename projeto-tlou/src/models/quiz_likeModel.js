@@ -31,9 +31,25 @@ function showQuizUserLike(fkUser) {
     );
 }
 
+function insertUserLike(fkUser, fkQuiz) {
+    return database.executar(
+        `INSERT INTO quiz_like(idquiz_like, likeQuiz, fkQuiz, fkUser) VALUES (1, 1, ${fkQuiz}, ${fkUser});
+        `
+    );
+}
+
+function deleteUserLike(fkUser, fkQuiz) {
+    return database.executar(
+        `DELETE FROM quiz_like WHERE fkUser = ${fkUser} AND fkQuiz = ${fkQuiz};
+        `
+    );
+}
+
 module.exports = {
     showQuizUserLike,
     likeByQuiz,
     listar,
-    likeByQuizId
+    likeByQuizId,
+    insertUserLike,
+    deleteUserLike,
 };

@@ -28,4 +28,8 @@ router.get("/exibirUser", function (req, res) {
     usuarioController.exibirUser(req, res);
 });
 
+router.get("/whoGabaritou", function (req, res) {
+    usuarioController.whoGabaritou(req, res);
+});
+
 module.exports = router;

@@ -55,10 +55,8 @@ async function addAnswerUser(req, res) {
             if (resposta.length > 0) {
                 tentativaVar += Number(resposta[0].tentativa)
                 numTentativas.push(tentativaVar)
-                console.log(resposta[0].tentativa)
             }
         }).then(async function () {
-            console.log(tentativaVar)
             await answer_userModel.addAnswerUser(numTentativas[0], answerUser, status, time, fkQuiz, fkQuestion, fkUser)
                 .then(
                     function (resultado) {
