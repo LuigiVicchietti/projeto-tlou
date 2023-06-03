@@ -259,6 +259,7 @@ main {
 
 .about-container {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -284,8 +285,9 @@ main {
     flex-direction: column;
     flex-wrap: wrap;
     width: 40%;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 10px;
+    gap: 1vh;
     overflow: hidden;
 }
 
@@ -302,7 +304,7 @@ main {
 
 .paragraph {
     text-align: start;
-    font-size: 21px;
+    font-size: 19px;
     letter-spacing: 1px;
     padding: 8px;
 }
@@ -353,6 +355,7 @@ main {
     display: flex;
     position: relative;
     flex-direction: row;
+    align-items: center;
     justify-content: space-around;
     background-image: url(../assets/img/jackson-background.jpg);
     background-repeat: no-repeat;
@@ -385,6 +388,7 @@ main {
     display: flex;
     position: relative;
     flex-direction: row;
+    align-items: center;
     justify-content: space-around;
     background-image: url(../assets/img/tunnel-background.webp);
     background-repeat: no-repeat;
@@ -416,6 +420,7 @@ main {
     display: flex;
     position: relative;
     flex-direction: row;
+    align-items: center;
     justify-content: space-around;
     background-image: url(../assets/img/lakecity-background.webp);
     background-repeat: no-repeat;
@@ -447,6 +452,7 @@ main {
     display: flex;
     position: relative;
     flex-direction: row;
+    align-items: center;
     justify-content: space-around;
     background-image: url(../assets/img//abandoned-background.jpg);
     background-repeat: no-repeat;
@@ -477,7 +483,7 @@ main {
 .character-name {
     align-self: center;
     font-family: 'HeadLiner No.45';
-    font-size: 27px;
+    font-size: 30px;
     padding: 5px;
 }
 
@@ -581,32 +587,23 @@ main {
     max-width: 65%;
 }
 
-.half-alternative-right {
+.half-alternative {
     display: flex;
     flex-direction: column;
     position: absolute;
     width: 50%;
-    height: auto;
+    height: 65vh;
     justify-content: center;
     align-items: center;
     background-color: rgba(28, 28, 28, 0.8);
     bottom: -20vh;
     right: 0;
-    padding: 2rem;
+    gap: 2vh;
+    padding: 1rem;
 }
 
-.half-alternative-left {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: 50%;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(28, 28, 28, 0.8);
-    bottom: -20vh;
-    left: 0;
-    padding: 2rem;
+.half-alternative.left {
+    left: 0 !important;
 }
 
 .interact-container {
@@ -653,7 +650,7 @@ main {
 }
 
 .creator-container::before {
-    content: ' ';
+    content: '';
     position: absolute;
     width: 100%;
     height: 100px;
@@ -661,6 +658,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     filter: blur(3px);
+    opacity: 0.5;
     top: 0;
     left: 0;
 }
@@ -827,3 +825,80 @@ footer {
     box-shadow: 0px 0px 6px #FFFFFF;
     border-radius: 15px;
 }
+
+.music-interaction {
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2vw;
+    top: 0.5vh;
+    right: 7vw;
+}
+
+.music-interaction img {
+    max-width: 2.5rem;
+    cursor: pointer;
+}
+
+.music-interaction img:hover {
+    -webkit-transform: scale(1.07);
+    -moz-transform: scale(1.07);
+    -o-transform: scale(1.07);
+    -ms-transform: scale(1.07);
+    transform: scale(1.07);
+}
+
+.music-interaction #flexible_span {
+    font-size: 16px;
+    font-weight: 300;
+    transition: 0.5s ease-in-out;
+}
+
+.music-interaction #flexible_span.clicked {
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+}
+
+.loader {
+    display: none;
+    align-items: center;
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+  }
+
+  .loader.show {
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+  }
+  
+  .bar {
+    display: inline-block;
+    width: 3px;
+    height: 15px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    animation: scale-up4 1s linear infinite;
+  }
+  
+  .bar:nth-child(2) {
+    height: 25px;
+    margin: 0 5px;
+    animation-delay: .25s;
+  }
+  
+  .bar:nth-child(3) {
+    animation-delay: .5s;
+  }
+  
+  @keyframes scale-up4 {
+    20% {
+      background-color: #ffff;
+      transform: scaleY(1.5);
+    }
+  
+    40% {
+      transform: scaleY(1);
+    }
+  }

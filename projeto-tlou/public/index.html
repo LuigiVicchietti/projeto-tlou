@@ -40,7 +40,7 @@
                     e aclamados da última década. Neste site, vamos explorar diferentes aspectos do jogo, desde análises
                     de personagens e
                     jogabilidade à quizes para desafiar o seu conhecimento sobre a série.</p>
-                <a href="#about"><button class="btn-header">Saiba mais</button></a>
+                <a href="#about"><button class="btn-header select-disable">Saiba mais</button></a>
             </div>
         </div>
         <div class="scroll-sign select-disable">
@@ -50,6 +50,18 @@
     </header>
     <main>
         <div class="about-container" id="about">
+            <div class="music-interaction select-disable">
+                <audio src="#"></audio>
+                <span id="flexible_span" data-aos="fade-left" data-aos-duration="900">
+                    Clique na nota musical para ouvir uma música do game!
+                </span>
+                <div class="loader">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <img src="./assets/img/icons/MusicNote.png" alt="Nota musical" onclick="playMusic()">
+            </div>
             <h2 class="title-div-content select-disable">Sobre</h2>
             <div class="section-div">
                 <div class="half">
@@ -90,8 +102,6 @@
                     </p>
                 </div>
                 <div class="half">
-                    <!-- <img class="img-about select-disable" data-aos="fade-left" data-aos-duration="700"
-                        src="./assets/img/image-about-1.png" alt="Ellie tocando violão na floresta"> -->
                     <iframe width="100%" height="300vh" src="https://www.youtube.com/embed/S2O7xQMdRZM"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -142,11 +152,8 @@
                                 do jogo, vemos flashes do passado de Joel e dos eventos traumáticos que o transformaram
                                 no homem que ele é hoje.</p>
                             <p class="paragraph" data-aos="fade-right" data-aos-duration="700">Quando Joel conhece a
-                                jovem Ellie, uma menina que é imune ao vírus da pandemia, ele é forçado a reavaliar suas
-                                prioridades e a abrir seu coração para outra pessoa. A relação entre Joel e Ellie é um
-                                dos pontos centrais da história de The Last of Us, e é tocante ver como a amizade deles
-                                evolui à medida que eles enfrentam juntos os perigos e as dificuldades do mundo
-                                pós-apocalíptico.</p>
+                                jovem Ellie, ele é forçado a reavaliar suas
+                                prioridades e a abrir seu coração para outra pessoa.</p>
                         </div>
                         <div class="half">
                             <img class="character-view select-disable" data-aos="fade-right" data-aos-duration="700"
@@ -289,7 +296,7 @@
                 <div class="complete-div">
                     <img class="image-behind select-disable" src="./assets/img/image-gameplay-1.jpg"
                         data-aos="fade-right" data-aos-duration="700">
-                    <div class="half-alternative-right" data-aos="fade-left" data-aos-duration="700">
+                    <div class="half-alternative" data-aos="fade-left" data-aos-duration="700">
                         <p class="paragraph">
                             A jogabilidade de The Last of Us é uma mistura habilidosa de ação, furtividade e exploração
                             em um ambiente pós-apocalíptico altamente detalhado e imersivo. A jogabilidade é projetada
@@ -298,26 +305,27 @@
                             evitando inimigos sempre que possível. O jogador tem acesso a uma variedade de armas, desde
                             facas até coquetéis molotov, e pode criar itens a partir de materiais encontrados no mundo.
                         </p>
-                        <p class="paragraph">A exploração é uma grande parte da jogabilidade, incentivando o jogador a
-                            procurar por recursos, itens valiosos e segredos escondidos em cada área. O mundo do jogo é
-                            meticulosamente detalhado, com áreas interativas que permitem ao jogador usar
-                            objetos para criar rotas alternativas ou encontrar itens escondidos.</p>
+                        <p class="paragraph">Ambos os dois games da série partilham a mesma dinâmica na jogatina, porém
+                            o segundo game
+                            adiciona novas dinâmicas, como se deixar em estruturas e se esconder em elementos novos, e
+                            dá uma polida em movimentações, animações.
+                        </p>
                     </div>
                 </div>
                 <div class="complete-div-alternative">
                     <img class="image-behind select-disable" src="./assets/img/image-gameplay-2.jpg"
                         data-aos="fade-left" data-aos-duration="700">
-                    <div class="half-alternative-left" data-aos="fade-right" data-aos-duration="700">
+                    <div class="half-alternative left" data-aos="fade-right" data-aos-duration="700">
+                        <p class="paragraph">A exploração é uma grande parte da jogabilidade, incentivando o jogador a
+                            procurar por recursos, itens valiosos e segredos escondidos em cada área. O mundo do jogo é
+                            meticulosamente detalhado, com áreas interativas que permitem ao jogador usar
+                            objetos para criar rotas alternativas ou encontrar itens escondidos.</p>
                         <p class="paragraph">
                             Em resumo, a jogabilidade de The Last of Us é altamente envolvente, oferecendo uma mistura
                             hábil de ação, furtividade e exploração em um ambiente pós-apocalíptico incrivelmente
                             detalhado. A interação entre os personagens e a escolha do jogador em abordar cada situação
                             são aspectos importantes que contribuem para uma experiência de jogo única e emocionante.
                         </p>
-                        <p class="paragraph">Sobre a diferença de mecãnicas entre os dois jogos, The Last of Us 2
-                            introduziu várias melhorias na jogabilidade em relação ao seu antecessor. Por exemplo, em
-                            The Last of Us 2, o jogador pode esquivar de ataques, pular e escalar com mais facilidade, e
-                            há uma maior variedade de movimentos de combate.</p>
                     </div>
                 </div>
             </div>
@@ -338,7 +346,8 @@
                         Desafie-se e divirta-se enquanto aprende mais sobre o jogo e seus personagens
                         icônicos. E quem sabe, você pode até descobrir algo novo sobre The
                         Last of Us.
-                        Então, o que está esperando? Clique no botão abaixo, cadastre-se e comece agora mesmo o quiz de The Last
+                        Então, o que está esperando? Clique no botão abaixo, cadastre-se e comece agora mesmo o quiz de
+                        The Last
                         of Us!
                     </p>
                     <a href="./login.html" style="align-self: center;"><button class="btn-header">Vamos la</button></a>
