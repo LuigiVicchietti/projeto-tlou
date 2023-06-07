@@ -15,15 +15,15 @@ router.post("/addAnswerUser", function (req, res) {
     answer_userController.addAnswerUser(req, res);
 })
 
-router.post("/answerPerQuestion", function (req, res) {
+router.get("/answerPerQuestion/:fkQuiz", function (req, res) {
     answer_userController.answerPerQuestion(req, res);
 })
 
-router.post("/statusAnswer", function (req, res) {
+router.get("/statusAnswer/:fkUser/:fkQuiz", function (req, res) {
     answer_userController.statusAnswer(req, res);
 })
 
-router.post("/showLastStatus", function (req, res) {
+router.get("/showLastStatus/:fkUser/:fkQuiz", function (req, res) {
     answer_userController.showLastStatus(req, res);
 })
 

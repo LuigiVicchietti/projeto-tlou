@@ -48,7 +48,10 @@ function changeThemeLog() {
     signIn.classList.toggle("ativo");
     signUp.classList.toggle("ativo");
     signUp_google.classList.toggle("ativo");
+
+    localStorage.setItem("modo", "true");
 }
+
 function undoChangeThemeLog() {
     light.setAttribute("src", "./assets/img/icons/light.png");
     arrow_back.setAttribute("src", "./assets/img/icons/arrow-back.png");
@@ -62,6 +65,8 @@ function undoChangeThemeLog() {
     signIn.classList.toggle("ativo");
     signUp.classList.toggle("ativo");
     signUp_google.classList.toggle("ativo");
+
+    localStorage.setItem("modo", "false");
 }
 
 // Cadastro
@@ -81,6 +86,8 @@ function changeThemeCad() {
     input_confirm_password.classList.toggle("ativo");
     signUp.classList.toggle("ativo");
     signUp_google.classList.toggle("ativo");
+
+    localStorage.setItem("modo", "true");
 }
 
 function undoChangeThemeCad() {
@@ -96,4 +103,6 @@ function undoChangeThemeCad() {
     input_confirm_password.classList.toggle("ativo");
     signUp.classList.toggle("ativo");
     signUp_google.classList.toggle("ativo");
+
+    localStorage.setItem("modo", "false");
 }

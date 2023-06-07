@@ -3,7 +3,7 @@ var answer_userModel = require("../models/answer_userModel");
 
 var sessoes = [];
 var numTentativas = [];
-if(numTentativas.length == 12) {
+if (numTentativas.length == 12) {
     numTentativas = [];
 }
 
@@ -77,7 +77,7 @@ async function addAnswerUser(req, res) {
 }
 
 function answerPerQuestion(req, res) {
-    var fkQuiz = req.body.fkQuizServer;
+    var fkQuiz = req.params.fkQuiz;
 
     if (fkQuiz == undefined) {
         res.status(400).send("A fkQuiz está undefined!");
@@ -101,8 +101,8 @@ function answerPerQuestion(req, res) {
 }
 
 function statusAnswer(req, res) {
-    var fkUser = req.body.fkUserServer;
-    var fkQuiz = req.body.fkQuizServer;
+    var fkUser = req.params.fkUser;
+    var fkQuiz = req.params.fkQuiz;
 
     if (fkUser == undefined) {
         res.status(400).send("A FK User está undefined!");
@@ -128,8 +128,8 @@ function statusAnswer(req, res) {
 }
 
 function showLastStatus(req, res) {
-    var fkUser = req.body.fkUserServer;
-    var fkQuiz = req.body.fkQuizServer;
+    var fkUser = req.params.fkUser;
+    var fkQuiz = req.params.fkQuiz;
 
     if (fkUser == undefined) {
         res.status(400).send("A FK User está undefined!");

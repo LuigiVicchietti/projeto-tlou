@@ -238,14 +238,11 @@
 
     var answerPerQuiz = [];
 
-    fetch("/answer_user/answerPerQuestion", {
-        method: "POST",
+    fetch(`/answer_user/answerPerQuestion/${1}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            fkQuizServer: 1,
-        })
+        }
     }).then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then((jsonAnswerPerQuestion) => {
@@ -287,15 +284,11 @@
 
     var statusArray = [];
 
-    fetch("/answer_user/statusAnswer", {
-        method: "POST",
+    fetch(`/answer_user/statusAnswer/${sessionStorage.ID_USUARIO}/${1}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            fkUserServer: sessionStorage.ID_USUARIO,
-            fkQuizServer: 1,
-        })
+        }
     }).then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then((jsonStatusAnswer) => {
@@ -343,22 +336,18 @@
     var lastAnswer = [];
 
     document.addEventListener('DOMContentLoaded', () => {
-        fetch("/answer_user/showLastStatus", {
-            method: "POST",
+        fetch(`/answer_user/showLastStatus/${sessionStorage.ID_USUARIO}/${1}`, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                fkUserServer: sessionStorage.ID_USUARIO,
-                fkQuizServer: 1,
-            })
+            }
         }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then((jsonLastStatus) => {
                     let acertosQuiz = jsonLastStatus[0].acertos;
                     let timeQuiz = jsonLastStatus[0].tempo;
 
-                    var timeConvert = timeQuiz.replace(':00', '').replace(':', '.');
+                    var timeConvert = timeQuiz.replaceAll(':', '.').replace('00.', '').replace('.00', '');
                     Number(timeConvert);
 
                     lastAnswer.push(acertosQuiz)
