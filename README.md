@@ -10,7 +10,7 @@ O site contém login/cadastro e um quiz, uma sessão interativa, para levantamen
 
 O site fala contextualiza sobre a série de forma bem breve, levantando a história breve dos personagens, contexto do ambiente/mundo do game e sua jogabilidade, sem contar o já mencionado quiz para desafiar aqueles que querem jogar algo a partir do tema.
 
-Site construido para a terceira sprint do primeiro semestre de 2023 da faculdade SPTECH
+Site construido para a terceira sprint do primeiro semestre de 2023 da faculdade SPTECH.
 
 #
 
@@ -27,6 +27,6 @@ Site construido para a terceira sprint do primeiro semestre de 2023 da faculdade
 
 #
 
-- 📌 Em progresso.
+- 📌 Finalizado.
 - 🛠 Site não responsivo (no momento) criado sem uso de frameworks. Totalmente feito em HTML, CSS e JS puro.
-- 🔗 sem link no momento
+- 🔗 sem link no momento.
