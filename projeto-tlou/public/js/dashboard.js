@@ -140,20 +140,19 @@ function undoChangeThemeInside() {
     }, 100)
 }
 
-let darkModeInside = localStorage.getItem("modo");
-
-if (darkModeInside === "true") {
+if (localStorage.modo === "true") {
     changeThemeInside();
 }
+
 theme.addEventListener("click", (e) => {
-    darkModeInside = localStorage.getItem("modo");
-    if (darkModeInside === "false") {
+    if (localStorage.modo == "false") {
         changeThemeInside();
-        localStorage.setItem("modo", "true");
+        console.log('Dark Mode Ligado');
+    } else if (localStorage.modo === undefined) {
+        changeThemeInside();
         console.log('Dark Mode Ligado');
     } else {
         undoChangeThemeInside();
-        localStorage.setItem("modo", "false");
         console.log('Dark Mode Desligado');
     }
 });
