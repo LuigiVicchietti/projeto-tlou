@@ -27,6 +27,6 @@ Site construido para a terceira sprint do primeiro semestre de 2023 da faculdade
 
 #
 
-- 📌 Finalizado.
+- 📌 Finalizado. Passivo de atualizações.
 - 🛠 Site não responsivo (no momento) criado sem uso de frameworks. Totalmente feito em HTML, CSS e JS puro.
-- 🔗 sem link no momento.
+- 🔗 https://luigivicchietti.github.io/projeto-tlou/projeto-tlou/public/
